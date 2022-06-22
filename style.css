@@ -1,0 +1,22 @@
+body {
+  font-size: x-large;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+select {
+  font-size: x-large;
+}
+
+#dcpLogo {
+  margin-left: 20vw;
+}
+
+table {
+width: 100%;
+}
+
+td {
+  border: 2px solid rgb(110, 110, 110);
+}
+
+.addItem
