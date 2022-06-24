@@ -9,7 +9,7 @@ let date = document.querySelector('#date').value || '';
 // let applName = document.querySelector('#applName').value || '';
 // let disposal = document.querySelector('#disposal').value || '';
 // let comments = document.querySelector('#conditions').value || '';
-// // const submit = document.querySelector('[type=submit]').value || '';
+const submit = document.querySelector('[type="submit"]');
 let table = document.querySelector('#table');
 
 function preFill() {
@@ -33,6 +33,8 @@ function preFill() {
 
   // on submit add AddItem content to table
   function addItem() {
+    let row = table.insertRow(-1);
+
     let row = document.createElement("tr");
     let itmType = document.createElement("td");
     let applName = document.createElement("td");
