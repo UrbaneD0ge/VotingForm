@@ -1,12 +1,10 @@
 {
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  },
   "name": "votingform",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "tsc --watch"
+    "start": "node app.js"
+  },
   },
   "repository": {
     "type": "git",

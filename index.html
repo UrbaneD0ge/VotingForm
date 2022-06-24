@@ -10,7 +10,6 @@
     <title>Planner's Voting Report</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="dest/app.js" defer></script>
 <!-- bootstrap?? -->
     <link rel="stylesheet" href="style.css">
   </head>
@@ -19,8 +18,8 @@
       <img id="dcpLogo" src="./NPU Logo Black-10.png" alt="Logo: City of Atlanta Dept of City Planning Neighborhood Planning Units">
     </header>
     <form>
-        <label for="">Select NPU:</label>
-        <select name="neighborhood" id="NPU">
+        <label class='pHead' for="neighborhood">Select NPU:</label>
+        <select  class='pHead' name="neighborhood" id="NPU">
           <option value="A">A</option>
           <option value="B">B</option>
           <option value="C">C</option>
@@ -49,38 +48,41 @@
           <option value="Z">Z</option>
         </select>
         <br>
-        <label for="chair">Chair:</label>
-        <input type="text" name="chair" id="chair">
+        <label  class='pHead' for="chair">Chair:</label>
+        <input  class='pHead' type="text" name="chair" id="chair">
         <br>
-        <label for="location">Location:</label>
-        <input type="text" name="location" id="location">
+        <label class='pHead' for="location">Location:</label>
+        <input  class='pHead' type="text" name="location" id="location">
         <br>
-        <label for="planner">Planner:</label>
-        <input type="text" name="planner" id="planner">
+        <label  class='pHead' for="planner">Planner:</label>
+        <input  class='pHead' type="text" name="planner" id="planner">
         <br>
-        <label for="date">Meeting Date:</label>
-        <input type="date" name="date" id="date">
+        <label  class='pHead' for="date">Meeting Date:</label>
+        <input  class='pHead' type="date" name="date" id="date">
     </form>
     <br>
     <div id='newItem'>
-      <legend>Add Item</legend>
+      <legend>New Item:</legend>
       <form id='addItem'>
         <select name='itmType' id='itmType'>
-          <option>Type</option>
+          <option hidden selected disabled>Type</option>
           <option value='MOSE'>MOSE</option>
           <option value='LRB'>LRB</option>
           <option value='ZRB'>ZRB</option>
+          <option value='BZA'>BZA</option>
+          <option value='SDC'>SDC</option>
         </select>
         <input type="text" name="applName" id="applName" placeholder='Application name'>
         <select name='disposal' id='disposal'>
-          <option hidden selected disabled>Disposal</option>
+          <option hidden selected disabled value='' required>Disposal</option>
           <option value='Approval'>Approval</option>
           <option value='Denial'>Denial</option>
           <option value='Defer'>Defer</option>
           <option value='No Vote'>No Vote</option>
         </select>
-        <textarea class='comments' name="conditions" id="conditions" cols="30" rows="5"></textarea>
-        <input type="submit" value="Add Item">
+        <textarea class='comments' name="conditions" id="conditions" cols="30" rows="5" placeholder='Comments / Conditions...'></textarea>
+        <button onclick='addItem()' id='submit'>Submit</button>
+
       </form>
     </legend>
     </div>
@@ -92,22 +94,11 @@
           <th>NPU Recommendation</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id='table'>
         <tr>
           <td>LRB</td>
           <td contenteditable="true">O'Pubberz</td>
           <td>Approval</td>
-        </td>
-        </tr>
-        <tr>
-          <td>MOSE</td>
-          <td contenteditable="true">EventFest '99</td>
-          <td>123 Main St</td>
-        </tr>
-        <tr>
-          <td>BZA</td>
-          <td contenteditable="true">V-22-69</td>
-          <td>123 Main St</td>
         </tr>
     </table>
     <!--[if lt IE 7]>

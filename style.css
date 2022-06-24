@@ -3,7 +3,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-select, input {
+select, input, button {
   font-size: x-large;
 }
 
@@ -14,7 +14,12 @@ select, input {
   width: 50%;
 }
 
+.pHead {
+  margin: 3px;
+}
+
 table {
+  margin-top: 20px;
   display: grid;
   width: 100%;
 }
@@ -29,7 +34,7 @@ td {
 }
 
 #newItem {
-  border: 2px solid black;
+  border: 3px solid black;
   border-radius: 5px;
   padding: 10px;
 }
@@ -39,7 +44,7 @@ td {
   grid-template-columns: 1fr 4fr 1fr;
 }
 
-select{
+#addItem select{
   width: 100%;
 }
 
