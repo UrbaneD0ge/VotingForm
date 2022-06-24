@@ -10,6 +10,7 @@
     <title>Planner's Voting Report</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="dest/app.js" defer></script>
 <!-- bootstrap?? -->
     <link rel="stylesheet" href="style.css">
   </head>
@@ -61,16 +62,25 @@
         <input type="date" name="date" id="date">
     </form>
     <br>
-    <div newItem>
+    <div id='newItem'>
+      <legend>Add Item</legend>
       <form id='addItem'>
-        <legend>
         <select name='itmType' id='itmType'>
-          <option></option>
+          <option>Type</option>
           <option value='MOSE'>MOSE</option>
           <option value='LRB'>LRB</option>
           <option value='ZRB'>ZRB</option>
         </select>
-        <input type="text" name="applName" id="applName">
+        <input type="text" name="applName" id="applName" placeholder='Application name'>
+        <select name='disposal' id='disposal'>
+          <option hidden selected disabled>Disposal</option>
+          <option value='Approval'>Approval</option>
+          <option value='Denial'>Denial</option>
+          <option value='Defer'>Defer</option>
+          <option value='No Vote'>No Vote</option>
+        </select>
+        <textarea class='comments' name="conditions" id="conditions" cols="30" rows="5"></textarea>
+        <input type="submit" value="Add Item">
       </form>
     </legend>
     </div>
@@ -84,23 +94,19 @@
       </thead>
       <tbody>
         <tr>
-          <td>A</td>
-          <td>John</td>
-          <td><select name="disp" id="disp1">
-          <option></option>
-          <option value="appr">Approval</option>
-          <option value="deny">Denial</option>
-          <option value="defer">Defer</option></select>
+          <td>LRB</td>
+          <td contenteditable="true">O'Pubberz</td>
+          <td>Approval</td>
         </td>
         </tr>
         <tr>
-          <td>B</td>
-          <td>John</td>
+          <td>MOSE</td>
+          <td contenteditable="true">EventFest '99</td>
           <td>123 Main St</td>
         </tr>
         <tr>
-          <td>C</td>
-          <td>John</td>
+          <td>BZA</td>
+          <td contenteditable="true">V-22-69</td>
           <td>123 Main St</td>
         </tr>
     </table>

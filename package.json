@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "name": "votingform",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UrbaneD0ge/VotingForm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UrbaneD0ge/VotingForm/issues"
+  },
+  "homepage": "https://github.com/UrbaneD0ge/VotingForm#readme",
+  "description": ""
+}
