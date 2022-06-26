@@ -5,11 +5,11 @@ let loc = document.querySelector('#location').value || '';
 let planner = document.querySelector('#planner').value || '';
 let date = document.querySelector('#date').value || '';
 // // Add Item form
-// let itmType = document.querySelector('#itmType').value || '';
-// let applName = document.querySelector('#applName').value || '';
-// let disposal = document.querySelector('#disposal').value || '';
-// let comments = document.querySelector('#conditions').value || '';
-const submit = document.querySelector('[type="submit"]');
+let itmType = document.querySelector('#itmType').value || '';
+let applName = document.querySelector('#applName').value || '';
+let disposal = document.querySelector('#disposal').value || '';
+let comments = document.querySelector('#conditions').value || '';
+const submit = document.querySelector('#submit');
 let table = document.querySelector('#table');
 
 function preFill() {
@@ -21,7 +21,7 @@ function preFill() {
       applName.text = 'Applicant Name';
       break;
     case 'ZRB':
-      applName.text = 'Z-';
+      applName.value = 'Z-';
       break;
     case 'BZA':
       applName.text = 'V-';
@@ -30,28 +30,18 @@ function preFill() {
       applName.text = 'SD-';
 
   }
-
-  // on submit add AddItem content to table
-  function addItem() {
-    let row = table.insertRow(-1);
-
-    let row = document.createElement("tr");
-    let itmType = document.createElement("td");
-    let applName = document.createElement("td");
-    let disposal = document.createElement("td");
-    let comments = document.createElement("tr", "td");
-
-    itmType.innerHTML = document.querySelector('#itmType').value;
-    applName.innerHTML = document.querySelector('#applName').value;
-    disposal.innerHTML = document.querySelector('#disposal').value;
-    comments.innerHTML = document.querySelector('#conditions').value;
-
-    row.appendChild(itmType);
-    row.appendChild(applName);
-    row.appendChild(disposal);
-    if (comments.innerHTML !== '') {
-      row.appendChild(comments);
-    }
-    table.appendChild(row);
-  }
 };
+
+// on itemType change, preFill the applName
+document.querySelector('#itmType').addEventListener('change', preFill);
+
+submit.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let newRow = document.innerHTML = `<tr> <td>${NPU}</td> <td>${chair}</td> <td>${loc}</td> <td>${planner}</td> <td>${date}</td> <td>${itmType}</td> <td>${applName}</td> <td>${disposal}</td> <td>${comments}</td> </tr>`;
+    // append new row to table
+    table.appendChild(newRow);
+    console.log('new row added');
+    // clear inputs
+    document.querySelector('#addItem').reset();
+    }
+);
