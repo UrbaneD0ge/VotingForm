@@ -18,6 +18,13 @@ select, input, button {
   margin: 3px;
 }
 
+/* #pageInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+} */
+
 table {
   margin-top: 20px;
   display: grid;
