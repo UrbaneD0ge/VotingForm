@@ -63,7 +63,7 @@
     <br>
     <div id='newItem'>
       <legend>New Item:</legend>
-      <form id='addItem'>
+      <form onsubmit='return false' id='addItem'>
         <select name='itmType' id='itmType'>
           <option hidden selected disabled>Type</option>
           <option value='MOSE'>MOSE</option>
@@ -72,7 +72,7 @@
           <option value='BZA'>BZA</option>
           <option value='SDC'>SDC</option>
         </select>
-        <input type="text" name="applName" id="applName" placeholder='Application name'>
+        <input type="text" name="applName" id="applName" placeholder='Application name' >
         <select name='disposal' id='disposal'>
           <option hidden selected disabled value='' required>Disposal</option>
           <option value='Approval'>Approval</option>
@@ -100,6 +100,10 @@
           <td contenteditable="true">O'Pubberz</td>
           <td>Approval</td>
         </tr>
+        <tr>
+          <td colspan='3'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti placeat iusto expedita provident nihil praesentium, libero quod perspiciatis recusandae? Repellat hic eius culpa quam dignissimos dicta inventore sint quis accusantium. </td>
+        </tr>
+      </tbody>
     </table>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
