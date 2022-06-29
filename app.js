@@ -1,5 +1,5 @@
-const submit = document.querySelector('#submit');
-let table = document.querySelector('#table');
+const submit = document.getElementById('submit');
+const table = document.getElementById('table');
 
 // function preFill() {
 //   switch (document.querySelector('#itmType').value) {
@@ -28,7 +28,7 @@ let table = document.querySelector('#table');
 submit.addEventListener('submit', (e) => {
   e.preventDefault();
   // header inputs
-let NPU = document.getElementById('NPU]').value || '';
+let NPU = document.getElementById('NPU').value || '';
 let chair = document.querySelector('#chair').value || '';
 let loc = document.querySelector('#location').value || '';
 let planner = document.querySelector('#planner').value || '';
