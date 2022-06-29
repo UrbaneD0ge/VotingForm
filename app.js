@@ -1,28 +1,28 @@
 const submit = document.getElementById('submit');
 const table = document.getElementById('table');
-
-// function preFill() {
-//   switch (document.querySelector('#itmType').value) {
-//     case 'MOSE':
-//       applName.text = 'Applicant Name';
-//       break;
-//     case 'LRB':
-//       applName.text = 'Applicant Name';
-//       break;
-//     case 'ZRB':
-//       applName.value = 'Z-';
-//       break;
-//     case 'BZA':
-//       applName.text = 'V-';
-//       break;
-//     case 'SDC':
-//       applName.text = 'SD-';
-
-//   }
-// };
-
+let suffix = document.getElementById('itmType').value;
 // // on itemType change, preFill the applName
-// document.querySelector('#itmType').addEventListener('change', preFill);
+document.querySelector('#itmType').addEventListener('change', preFill);
+
+function preFill() {
+  switch (document.querySelector('#itmType').value) {
+    case 'MOSE':
+      applName.text = 'Applicant Name';
+      break;
+    case 'LRB':
+      applName.text = 'Applicant Name';
+      break;
+    case 'ZRB':
+      applName.textContent = 'Z-';
+      applName.setAttribute('placeholder', 'Z-')
+      break;
+    case 'BZA':
+      applName.text = 'V-';
+      break;
+    case 'SDC':
+      applName.text = 'SD-';
+      break;  }
+};
 
 // on submit, add form data to table
 submit.addEventListener('click', (e) => {
@@ -62,8 +62,16 @@ let comments = document.querySelector('#conditions').value || '';
 
   if (comments !== '') {
     // create new row for comments
-    table.appendChild(row);
-    row.appendChild(commentsCell);
+    let commentsRow = document.createElement('tr');
+    // create new cell for comments
+    let commentsCell = document.createElement('td')
+    commentsCell.setAttribute('colspan', '3');
+    // add text to cell
+    commentsCell.textContent = comments;
+    // append cell to row
+    commentsRow.appendChild(commentsCell);
+    // append row to table
+    table.appendChild(commentsRow);
   }
 
   console.log('new row added');
@@ -71,3 +79,7 @@ let comments = document.querySelector('#conditions').value || '';
   document.querySelector('#addItem').reset();
     }
 );
+
+window.onbeforeunload = function (e) {
+  return 'Form contents will be lost!';
+};
