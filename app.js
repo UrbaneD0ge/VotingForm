@@ -30,6 +30,11 @@ function preFill() {
       applName.setAttribute('placeholder', 'LOR-')
       // applName.setAttribute('type', 'number');
       break;
+    case 'N/A':
+      applName.value = '';
+      applName.setAttribute('placeholder', '')
+      // applName.setAttribute('type', 'number');
+      break;
     }
 };
 
@@ -57,12 +62,15 @@ let comments = document.querySelector('#conditions').value || '';
   let row = document.createElement('tr');
   // create table cells
   let itmTypeCell = document.createElement('td');
+  let deleteButton = document.createElement('button');
   let applNameCell = document.createElement('td');
   let disposalCell = document.createElement('td');
   let commentsCell = document.createElement('td');
   // add text to cells
-  itmTypeCell.textContent = itmType;
-  itmTypeCell.classList.add('typeBttn');
+  itmTypeCell.innerText = itmType;
+  itmTypeCell.prepend(deleteButton);
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.setAttribute('class', 'btn-close');
   applNameCell.textContent = applName;
   disposalCell.textContent = disposal;
   commentsCell.textContent = comments;
@@ -85,6 +93,7 @@ let comments = document.querySelector('#conditions').value || '';
     // create new cell for comments
     let commentsCell = document.createElement('td')
     commentsCell.setAttribute('colspan', '3');
+    commentsCell.setAttribute('contenteditable', 'true');
     // add text to cell
     commentsCell.textContent = comments;
     // append cell to row
@@ -101,9 +110,9 @@ let comments = document.querySelector('#conditions').value || '';
 
 // on button click, remove that tbody
 document.querySelector('#table').addEventListener('click', (e) => {
-  if (e.target.classList.contains('typeBttn')) {
+  if (e.target.classList.contains('btn-close')) {
     if (confirm('Are you sure you want to delete this item?')) {
-      e.target.parentElement.parentElement.remove();
+      e.target.parentElement.parentElement.parentElement.remove();
     } else { return; }
   }
 }

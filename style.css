@@ -29,13 +29,6 @@ select, input, button {
   margin: 3px;
 }
 
-.typeBttn {
-  margin: 3px;
-  padding: 3px;
-  border-radius: 3px;
-  border: 1px solid black;
-}
-
 tbody:hover {
   color: darkgray;
 }
@@ -58,6 +51,10 @@ tr :first-child {
   text-align: left;
 }
 
+td > button {
+  margin-right: 2vw;
+}
+
 tbody > tr :nth-child(2) {
   width: 66%;
 }
@@ -68,6 +65,7 @@ text-align: end;
 
 td {
   border: 1px solid rgb(110, 110, 110);
+  padding: 0px 10px !important
 }
 
 #newItem {
