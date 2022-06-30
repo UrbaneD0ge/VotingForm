@@ -64,17 +64,20 @@
     <div id='newItem'>
       <legend>New Item:</legend>
       <form onsubmit='return false' id='addItem'>
-        <select name='itmType' id='itmType'>
+        <select name='itmType' id='itmType' required>
           <option hidden selected disabled>Type</option>
           <option value='MOSE'>MOSE</option>
           <option value='LRB'>LRB</option>
           <option value='ZRB'>ZRB</option>
           <option value='BZA'>BZA</option>
-          <option value='SDC'>SDC</option>
+          <optgroup label='SDC' >
+            <option value='SDC'>SDC</option>
+            <option value='LOR'>LOR</option>
+          </optgroup>
         </select>
-        <input type="text" name="applName" id="applName" placeholder='Application name' >
-        <select name='disposal' id='disposal'>
-          <option hidden selected disabled value='' required>Disposal</option>
+        <input type="text" name="applName" id="applName" required>
+        <select name='disposal' id='disposal' required>
+          <option hidden selected disabled>Recommend</option>
           <option value='Approval'>Approval</option>
           <option value='Denial'>Denial</option>
           <option value='Defer'>Defer</option>
@@ -97,7 +100,7 @@
       <tbody id='table'>
         <tr>
           <td>LRB</td>
-          <td contenteditable="true">O'Pubberz</td>
+          <td contenteditable="true">O'Froggy's</td>
           <td>Approval</td>
         </tr>
         <tr>

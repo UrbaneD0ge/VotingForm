@@ -1,5 +1,5 @@
 body {
-  font-size: x-large;
+  font-size: 1.2rem;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -12,6 +12,10 @@ select, input, button {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.item {
+  background-color: lightgray;
 }
 
 .pHead {

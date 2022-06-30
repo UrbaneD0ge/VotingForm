@@ -7,21 +7,30 @@ document.querySelector('#itmType').addEventListener('change', preFill);
 function preFill() {
   switch (document.querySelector('#itmType').value) {
     case 'MOSE':
-      applName.text = 'Applicant Name';
+      applName.setAttribute('placeholder', 'Applicant Name');
+      applName.value = ('');
       break;
     case 'LRB':
-      applName.text = 'Applicant Name';
+      applName.setAttribute('placeholder', 'Applicant Name');
       break;
     case 'ZRB':
-      applName.textContent = 'Z-';
-      applName.setAttribute('placeholder', 'Z-')
+      applName.value = 'Z-22-';
+      applName.setAttribute('placeholder', 'Z-');
       break;
     case 'BZA':
-      applName.text = 'V-';
+      applName.value = 'V-22-';
+      applName.setAttribute('placeholder', 'V-');
       break;
     case 'SDC':
-      applName.text = 'SD-';
-      break;  }
+      applName.value = 'SD-22-';
+      applName.setAttribute('placeholder', 'SD-')
+      break;  
+    case 'LOR':
+      applName.value = 'LOR-22-';
+      applName.setAttribute('placeholder', 'LOR-')
+      // applName.setAttribute('type', 'number'); 
+      break;  
+    }
 };
 
 // on submit, add form data to table
@@ -51,6 +60,8 @@ let comments = document.querySelector('#conditions').value || '';
   applNameCell.textContent = applName;
   disposalCell.textContent = disposal;
   commentsCell.textContent = comments;
+
+// wrap each new item in a <tbody>, shade with nth child
 
   // append new row to table
   table.appendChild(row);
