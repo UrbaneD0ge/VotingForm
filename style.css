@@ -4,7 +4,7 @@ body {
 }
 
 select, input, button {
-  font-size: x-large;
+  font-size: 1.2rem;
 }
 
 #dcpLogo {
@@ -12,33 +12,47 @@ select, input, button {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  min-width: 1.5in;
 }
 
 .item {
   background-color: lightgray;
 }
 
+.row {
+  align-items: center;
+}
+
 .pHead {
   margin: 3px;
 }
 
-/* #pageInfo {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.typeBttn {
+  margin: 3px;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
 
-} */
+tbody:hover {
+  color: darkgray;
+}
 
 table {
   margin-top: 20px;
-  display: grid;
   width: 100%;
 }
 
-thead > tr {
-  display: grid;
-  grid-template-columns: 1fr 4fr 2fr;
+tbody:nth-child(odd) {
+  background-color: lightgrey;
 }
+
+/* thead > tr {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+} */
 
 tr :first-child {
   text-align: left;
@@ -53,7 +67,7 @@ text-align: end;
 }
 
 td {
-  border: 2px solid rgb(110, 110, 110);
+  border: 1px solid rgb(110, 110, 110);
 }
 
 #newItem {
@@ -65,10 +79,14 @@ td {
 
 #addItem {
   display: grid;
-  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-columns: 1fr 5fr 1fr;
 }
 
 #addItem select{
+  width: 100%;
+}
+
+#addItem input {
   width: 100%;
 }
 
