@@ -119,6 +119,6 @@ document.querySelector('#table').addEventListener('click', (e) => {
 );
 
 // Warn before leaving page
-// window.onbeforeunload = function (e) {
-//   return 'Form contents will be lost!';
-// };
+window.onbeforeunload = function (e) {
+  return 'Form contents will be lost!';
+};
