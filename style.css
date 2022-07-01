@@ -29,10 +29,6 @@ select, input, button {
   margin: 3px;
 }
 
-tbody:hover {
-  color: darkgray;
-}
-
 table {
   margin-top: 20px;
   width: 100%;
@@ -56,7 +52,7 @@ td > button {
 }
 
 tbody > tr :nth-child(2) {
-  width: 66%;
+  width: 50%;
 }
 
 tr :nth-child(3) {
@@ -89,7 +85,7 @@ p {
 
 #addItem {
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 #addItem select{
@@ -99,6 +95,15 @@ p {
 #addItem input {
   width: 100%;
 }
+
+@media only screen
+and (min-width : 320px)
+and (max-width : 768px) {
+ #addItem {
+  grid-template-columns: 1fr 1fr 1fr;
+ }
+}
+
 
 @media print {
   #newItem {

@@ -32,7 +32,7 @@ function preFill() {
       break;
     case 'N/A':
       applName.value = '';
-      applName.setAttribute('placeholder', '')
+      itmType.setAttribute('contentEditable', 'true')
       // applName.setAttribute('type', 'number');
       break;
     }
