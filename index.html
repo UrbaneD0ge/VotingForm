@@ -72,7 +72,7 @@
       <legend>New Item:</legend>
       <form onsubmit='return false' id='addItem'>
         <select name='itmType' id='itmType' required>
-          <option value='' hidden selected disabled>Type</option>
+          <option hidden selected disabled>Type</option>
           <option value='MOSE'>MOSE</option>
           <option value='LRB'>LRB</option>
           <option value='ZRB'>ZRB</option>
@@ -81,7 +81,7 @@
           <option value='LOR'>LOR</option>
           <option value='N/A'>Other...</option>
         </select>
-        <input type="text" name="applName" id="applName" required>
+        <input type="text" name="applName" id="applName" placeholder='Application number or name' required>
         <select name='disposal' id='disposal' required>
           <option value='' hidden selected disabled>Recommend</option>
           <option value='Approval'>Approval</option>
@@ -106,7 +106,7 @@
       <tbody>
         <tr>
           <td class='typeBttn'><button type='button' class='btn-close'></button>ZRB</td>
-          <td contenteditable="true"></td>
+          <td contenteditable="true">Z-12-345</td>
           <td>Approval</td>
         </tr>
         <tr>
