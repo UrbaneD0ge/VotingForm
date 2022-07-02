@@ -99,7 +99,6 @@
         </select>
         <textarea class='comments' name="conditions" id="conditions" cols="30" rows="5" placeholder='Comments / Conditions...'></textarea>
         <button id='submit' value='submit' class='mt-1'>Submit</button>
-
       </form>
     </legend>
     </div>
@@ -129,18 +128,37 @@
       <!-- <button id='save' class='m-3 flex-grow-1'>Save</button> -->
       <button id='print' class='m-5 flex-grow-1'>Print</button>
     </div>
+    <div id='signature' style='display: none;'>
+      <div class='row'>
+        <div class='col sign'>
+          <label for="chairS">Chair:</label>
+          <input type="text" name="chairS" id="chairS">
+          <br>
+          <label for="cDate">Date:</label>
+          <input type="text" name="cDate" id="cDate">
+        </div>
+        <div class='col sign'>
+          <label for="plannerS">Planner:</label>
+          <input type="text" name="plannerS" id="plannerS">
+          <br>
+          <label for="pDate">Date:</label>
+          <input type="text" name="pDate" id="pDate">
+        </div>
+      </div>
+    </div>
     <footer>
       <div id='instructions'>
 
       <h5>Instructions:</h5>
       <ol>
         <li>Fill page header info.</li>
-        <li>Select agenda item type, complete pre-filled application numbers where applicable, and select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
+        <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable, and select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
         <li>Add comments/conditions if applicable and submit.</li>
-        <li>To delete an item, click the button next to the item. Comments are editable and can be deleted.
-        <li>When finished, click "Print" to print the page or print to .PDF for emailing.</li>
+        <li>To delete an item, click the 'X' button next to the item. Comments are editable after submission, but application numbers are not.</li>
+
+        <li>When finished, click "Print". You may print the page if you have access to a printer, or print to .PDF for emailing.</li>
         </ol>
-      <p>Website Prepared by the Department of City Planning, City of Atlanta 2022</p>
+      <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'>Department of City Planning</a>, City of Atlanta | Send questions and bug reports to <a href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a></p>
     </div>
     </footer>
     <script src="app.js" async defer></script>

@@ -39,7 +39,6 @@
             "sizes":"512x512",
             "type":"image/png"
         },
-        // favicons
         {
             "src": "./favicon-16x16.png",
             "sizes": "16x16",

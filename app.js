@@ -30,25 +30,9 @@ window.onload = function () {
     document.querySelector('#chair').value = data.chair;
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
-
-    //   registerSW();
-    // }
   };
 
-  // async function registerSW() {
-  //   if ('serviceWorker' in navigator) {
-  //     try {
-  //       await navigator.serviceWorker.register('/VotingForm/sw.js', {
-  //         scope: '/VotingForm/'
-  //       });
-  //     } catch (error) {
-  //       console.log('Service Worker registration failed');
-  //     }
-  //   }
-  // };
-
-
-  // // on itemType change, preFill the applName
+  // on itemType change, preFill the applName
   document.querySelector('#itmType').addEventListener('change', preFill);
 
   function preFill() {
@@ -206,7 +190,7 @@ window.onload = function () {
       btn.style.display = 'none';
     }
     );
-
+    document.getElementById('signature').style.display = 'block';
   });
 
   // reset title after print
@@ -215,10 +199,11 @@ window.onload = function () {
     storeForm();
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('print').style.display = 'block';
-    document.querySelectorAll('.btn-close').forEach(btn => {
+        document.querySelectorAll('.btn-close').forEach(btn => {
       btn.style.display = 'inline';
     }
     );
+    document.getElementById('signature').style.display = 'none';
   }
   )
 };

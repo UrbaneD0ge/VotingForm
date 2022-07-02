@@ -24,12 +24,20 @@ select, input, button, textarea {
   background-color: lightgray;
 }
 
+.pHead {
+  margin: 3px;
+}
+
 .row {
   align-items: center;
 }
 
-.pHead {
-  margin: 3px;
+.sign {
+  border: 1px solid #888;
+  background-color: rgb(217, 217, 217);
+  border-radius: 5px;
+  padding: 2rem;
+  margin: 1rem;
 }
 
 table {
@@ -107,8 +115,15 @@ p {
   border-color: lightgray !important;
 }
 
+#signature input {
+  width: 100%;
+}
+
+#submit {
+  grid-area: 3 / 3 / 4 / 4;
+}
+
 @media only screen
-and (min-width : 320px)
 and (max-width : 768px) {
  #addItem {
   grid-template-columns: 1fr 1fr 1fr;
@@ -118,6 +133,15 @@ and (max-width : 768px) {
  }
 }
 
+@media only screen
+and (max-width : 425px) {
+  #dcpLogo {
+    width: 80%;
+   }
+   #submit {
+    grid-area: 3 / 1 / 4 / 4;
+  }
+}
 
 @media print {
   #newItem {
