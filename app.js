@@ -31,21 +31,21 @@ window.onload = function () {
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
 
-    registerSW();
-  }
+  //   registerSW();
+  // }
 };
 
-async function registerSW() {
-  if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register('/VotingForm/sw.js', {
-        scope: '/VotingForm/'
-      });
-    } catch (error) {
-      console.log('Service Worker registration failed');
-    }
-  }
-};
+// async function registerSW() {
+//   if ('serviceWorker' in navigator) {
+//     try {
+//       await navigator.serviceWorker.register('/VotingForm/sw.js', {
+//         scope: '/VotingForm/'
+//       });
+//     } catch (error) {
+//       console.log('Service Worker registration failed');
+//     }
+//   }
+// };
 
 
 // // on itemType change, preFill the applName
