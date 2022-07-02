@@ -147,7 +147,7 @@
     <script>
         if ('serviceWorker' in navigator) {
     try {
-      await navigator.serviceWorker.register('/VotingForm/sw.js', {
+      navigator.serviceWorker.register('/VotingForm/sw.js', {
         scope: '/VotingForm/'
       });
     } catch (error) {
