@@ -184,6 +184,12 @@ window.onbeforeunload = function (e) {
 today = document.querySelector('#date').valueAsDate = new Date();
 date = today.toLocaleDateString().split('/').join('-');
 
+// on print button click, print page
+document.querySelector('#print').addEventListener('click', () => {
+  window.print();
+}
+);
+
 // listen for print event
 window.addEventListener('beforeprint', () => {
   NPU = document.getElementById('NPU').value;
@@ -193,6 +199,7 @@ window.addEventListener('beforeprint', () => {
 
   document.title = `Voting Report_NPU-${NPU}_${date}`
   document.getElementById('instructions').style.display = 'none';
+  document.getElementById('print').style.display = 'none';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'none';
   }
@@ -205,6 +212,7 @@ window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
   storeForm();
   document.getElementById('instructions').style.display = 'block';
+  document.getElementById('print').style.display = 'block';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'inline';
   }
