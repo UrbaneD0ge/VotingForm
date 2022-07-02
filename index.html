@@ -144,5 +144,16 @@
     </div>
     </footer>
     <script src="app.js" async defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('/VotingForm/sw.js', {
+        scope: '/VotingForm/'
+      });
+    } catch (error) {
+      console.log('Service Worker registration failed');
+    }
+  }
+    </script>
   </body>
 </html>
