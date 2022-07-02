@@ -1,6 +1,39 @@
 const submit = document.getElementById('submit');
 const table = document.getElementById('table');
 let suffix = document.getElementById('itmType').value;
+
+// function to store the values of the form in local storage
+function storeForm() {
+  // header inputs
+  let NPU = document.getElementById('NPU').selectedOptions[0].value || '';
+  let chair = document.querySelector('#chair').value.trim() || '';
+  let loc = document.querySelector('#location').value.trim() || '';
+  let planner = document.querySelector('#planner').value.trim() || '';
+  let date = document.querySelector('#date').value || '';
+// save inputs to object
+  let data = {
+    NPU: NPU,
+    chair: chair,
+    loc: loc,
+    planner: planner,
+  };
+  // save data to local storage
+  localStorage.setItem('data', JSON.stringify(data));
+  console.log(data);
+}
+
+// on load, check if there is data in local storage and if so, pre-fill the form
+window.onload = function () {
+  if (localStorage.getItem('data')) {
+    let data = JSON.parse(localStorage.getItem('data'));
+    document.querySelector('#NPU').value = data.NPU;
+    document.querySelector('#chair').value = data.chair;
+    document.querySelector('#location').value = data.loc;
+    document.querySelector('#planner').value = data.planner;
+  }
+}
+
+
 // // on itemType change, preFill the applName
 document.querySelector('#itmType').addEventListener('change', preFill);
 
@@ -10,8 +43,9 @@ function preFill() {
       applName.setAttribute('placeholder', 'Applicant Name');
       applName.value = ('');
       break;
-    case 'LRB':
-      applName.setAttribute('placeholder', 'Applicant Name');
+      case 'LRB':
+        applName.setAttribute('placeholder', 'Applicant Name');
+        applName.value = ('');
       break;
     case 'ZRB':
       applName.value = 'Z-22-';
@@ -20,6 +54,14 @@ function preFill() {
     case 'BZA':
       applName.value = 'V-22-';
       applName.setAttribute('placeholder', 'V-');
+      break;
+      case 'Text Amendment/Zoning Ordinance':
+        applName.value = '22-O-';
+        applName.setAttribute('placeholder', 'CDP-');
+        break;
+    case 'Land Use/CDP':
+      applName.value = 'CDP-22-';
+      applName.setAttribute('placeholder', 'CDP-');
       break;
     case 'SDC':
       applName.value = 'SD-22-';
@@ -32,8 +74,7 @@ function preFill() {
       break;
     case 'N/A':
       applName.value = '';
-      itmType.setAttribute('contentEditable', 'true')
-      // applName.setAttribute('type', 'number');
+      applName.removeAttribute('placeholder');
       break;
     }
 };
@@ -41,17 +82,13 @@ function preFill() {
 // on submit, add form data to table
 submit.addEventListener('click', (e) => {
   e.preventDefault();
-  // header inputs
-let NPU = document.getElementById('NPU').selectedOptions[0].value || '';
-let chair = document.querySelector('#chair').value || '';
-let loc = document.querySelector('#location').value || '';
-let planner = document.querySelector('#planner').value || '';
-let date = document.querySelector('#date').value || '';
-// // Add Item form
-let itmType = document.querySelector('#itmType').selectedOptions[0].value;
-let applName = document.querySelector('#applName').value;
-let disposal = document.querySelector('#disposal').value || '';
-let comments = document.querySelector('#conditions').value || '';
+
+  // // Add Item form
+  let itmType = document.querySelector('#itmType').selectedOptions[0].value;
+  let applName = document.querySelector('#applName').value.trim();
+  let disposal = document.querySelector('#disposal').value || '';
+  let comments = document.querySelector('#conditions').value.trim() || '';
+
 
   if (itmType === '' || applName === '' || disposal === '') {
     ;
@@ -75,7 +112,7 @@ let comments = document.querySelector('#conditions').value || '';
   disposalCell.textContent = disposal;
   commentsCell.textContent = comments;
 
-// wrap each new item in a <tbody>
+  // wrap each new item in a <tbody>
   let tbody = document.createElement('tbody');
   tbody.append(row);
 
@@ -105,7 +142,8 @@ let comments = document.querySelector('#conditions').value || '';
   console.log('new row added');
   // clear inputs
   document.querySelector('#addItem').reset();
-    }
+
+}
 );
 
 // on button click, remove that tbody
@@ -118,7 +156,27 @@ document.querySelector('#table').addEventListener('click', (e) => {
 }
 );
 
-// Warn before leaving page
-window.onbeforeunload = function (e) {
-  return 'Form contents will be lost!';
-};
+// // Warn before leaving page
+// window.onbeforeunload = function (e) {
+//   return 'Form contents will be lost!';
+// };
+
+// set datepicker to today
+today = document.querySelector('#date').valueAsDate = new Date();
+date = today.toLocaleDateString().split('/').join('_');
+
+// listen for print event
+window.addEventListener('beforeprint', () => {
+  NPU = document.getElementById('NPU').value;
+
+  // get date from datepicker
+  date = document.querySelector('#date').valueAsDate.toLocaleDateString().split('/').join('_');
+
+  document.title = `Voting Report_NPU-${NPU}_${date}`
+});
+
+// reset title after print
+window.addEventListener('afterprint', () => {
+  document.title = 'Planner’s Voting Report';
+  storeForm();
+});
