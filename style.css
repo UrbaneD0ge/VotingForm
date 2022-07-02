@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap');
+
 body {
   font-size: 1.2rem;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
-select, input, button {
+select, input, button, textarea {
   font-size: 1.2rem;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 #dcpLogo {
@@ -14,7 +17,7 @@ select, input, button {
   width: 50%;
   margin-bottom: 3%;
   margin-top: 3%;
-  min-width: 1.5in;
+  min-width: 1.5in !important;
 }
 
 .item {
@@ -102,6 +105,9 @@ and (max-width : 768px) {
  #addItem {
   grid-template-columns: 1fr 1fr 1fr;
  }
+ .text-end {
+  text-align: inherit !important;
+ }
 }
 
 
@@ -110,4 +116,9 @@ and (max-width : 768px) {
     visibility: hidden;
     display: none;
   }
+}
+
+input:-internal-autofill-selected {
+  background-color: #fff !important;
+  color: #000 !important;
 }
