@@ -10,26 +10,24 @@ select, input, button, textarea {
   font-family: 'Nunito Sans', sans-serif;
 }
 
-#dcpLogo {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  margin-bottom: 3%;
-  margin-top: 3%;
-  min-width: 1.5in !important;
-}
-
 .item {
   background-color: lightgray;
+}
+
+.pHead {
+  margin: 3px;
 }
 
 .row {
   align-items: center;
 }
 
-.pHead {
-  margin: 3px;
+.sign {
+  border: 1px solid #888;
+  background-color: rgb(217, 217, 217);
+  border-radius: 5px;
+  padding: 2rem;
+  margin: 1rem;
 }
 
 table {
@@ -59,7 +57,7 @@ tbody > tr :nth-child(2) {
 }
 
 tr :nth-child(3) {
-text-align: end;
+  text-align: end;
 }
 
 td {
@@ -79,11 +77,10 @@ p {
   bottom: 0;
 }
 
-#newItem {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: lightgrey;
+ol {
+  padding: 0;
+  margin: 0;
+  font-size: .8rem;
 }
 
 #addItem {
@@ -99,6 +96,16 @@ p {
   width: 100%;
 }
 
+#dcpLogo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  min-width: 1.5in !important;
+}
+
 #demo {
   color: darkgray;
 }
@@ -107,17 +114,47 @@ p {
   border-color: lightgray !important;
 }
 
+#newItem {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: lightgrey;
+}
+
+#signature input {
+  width: 100%;
+}
+
+#submit {
+  grid-area: 3 / 3 / 4 / 4;
+}
+
 @media only screen
-and (min-width : 320px)
 and (max-width : 768px) {
- #addItem {
+  #addItem {
   grid-template-columns: 1fr 1fr 1fr;
  }
  .text-end {
   text-align: inherit !important;
  }
+ tbody > tr :nth-child(2) {
+  width: 33%;
 }
 
+}
+
+@media only screen
+and (max-width : 425px) {
+  .container {
+    width: 100% !important;
+  }
+  #dcpLogo {
+    width: 80%;
+   }
+   #submit {
+    grid-area: 3 / 1 / 4 / 4;
+  }
+}
 
 @media print {
   #newItem {

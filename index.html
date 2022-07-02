@@ -8,16 +8,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Planner's Voting Report</title>
-    <link rel="manifest" href="./manifest/manifest.webmanifest">
+    <link rel="cannonical" href="https://github.com/UrbaneD0ge/VotingForm/" />
+    <link rel="manifest" href="/VotingForm/manifest/manifest.webmanifest">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
   </head>
   <header>
     <img id="dcpLogo" src="./NPU Logo Black-10.png" alt="Logo: City of Atlanta Dept of City Planning Neighborhood Planning Units">
@@ -82,8 +83,8 @@
           <option value='LRB'>LRB</option>
           <option value='ZRB'>ZRB</option>
           <option value='BZA'>BZA</option>
-          <option value='Text Amendment/Zoning Ordinance'>Text Amendment</option>
-          <option value='Land Use/CDP'>CDP Amendment</option>
+          <option value='Text Amendment/ Zoning Ordinance'>Text Amendment</option>
+          <option value='Land Use/ CDP'>CDP Amendment</option>
           <option value='SRC'>SRC</option>
           <option value='LOR'>LOR</option>
           <option value='N/A'>Other...</option>
@@ -98,7 +99,6 @@
         </select>
         <textarea class='comments' name="conditions" id="conditions" cols="30" rows="5" placeholder='Comments / Conditions...'></textarea>
         <button id='submit' value='submit' class='mt-1'>Submit</button>
-
       </form>
     </legend>
     </div>
@@ -112,7 +112,7 @@
       </thead>
       <tbody id='demo'>
         <tr>
-          <td class='typeBttn'><button type='button' class='btn-close'></button>ZRB</td>
+          <td class='typeBttn'>ZRB</td>
           <td contenteditable="true">Z-12-345</td>
           <td>Approval</td>
         </tr>
@@ -128,20 +128,51 @@
       <!-- <button id='save' class='m-3 flex-grow-1'>Save</button> -->
       <button id='print' class='m-5 flex-grow-1'>Print</button>
     </div>
+    <div id='signature' style='display: none;'>
+      <div class='row'>
+        <div class='col sign'>
+          <label for="chairS">Chair:</label>
+          <input type="text" name="chairS" id="chairS">
+          <br>
+          <label for="cDate">Date:</label>
+          <input type="text" name="cDate" id="cDate">
+        </div>
+        <div class='col sign'>
+          <label for="plannerS">Planner:</label>
+          <input type="text" name="plannerS" id="plannerS">
+          <br>
+          <label for="pDate">Date:</label>
+          <input type="text" name="pDate" id="pDate">
+        </div>
+      </div>
+    </div>
     <footer>
       <div id='instructions'>
 
       <h5>Instructions:</h5>
       <ol>
         <li>Fill page header info.</li>
-        <li>Select agenda item type, complete pre-filled application numbers where applicable, and select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
+        <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable, and select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
         <li>Add comments/conditions if applicable and submit.</li>
-        <li>To delete an item, click the button next to the item. Comments are editable and can be deleted.
-        <li>When finished, print the page or print to .PDF</li>
+        <li>To delete an item, click the 'X' button next to the item. Comments are editable after submission, but application numbers are not.</li>
+
+        <li>When finished, click "Print". You may print the page if you have access to a printer, or print to .PDF for emailing.</li>
         </ol>
-      <p>Website Prepared by the Department of City Planning, City of Atlanta 2022</p>
+        <br>
+      <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'>Department of City Planning</a>, City of Atlanta | Send questions and bug reports to <a href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a></p>
     </div>
     </footer>
     <script src="app.js" async defer></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+    try {
+      navigator.serviceWorker.register('/VotingForm/sw.js', {
+        scope: '/VotingForm/'
+      });
+    } catch (error) {
+      console.log('Service Worker registration failed');
+    }
+  }
+    </script>
   </body>
 </html>

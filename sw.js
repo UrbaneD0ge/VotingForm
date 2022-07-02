@@ -10,8 +10,13 @@ const filesToCache = [
 ];
 
 self.addEventListener('install', async e => {
+  try {
   const cache = await caches.open(cacheName);
-  await cache.addAll(filesToCache);
+    await cache.addAll(filesToCache);
+    console.log('Cached all files');
+  } catch (error) {
+    console.log('Error caching files');
+  }
   return self.skipWaiting();
 });
 
@@ -47,3 +52,19 @@ async function networkAndCache(req) {
     return cached;
   }
 }
+
+var GHPATH = '/VotingForm';
+
+var APP_PREFIX = 'voting_';
+
+var VERSION = 'v1';
+
+var URLS = [
+  `${GHPATH}/`,
+  `${GHPATH}/index.html`,
+  `${GHPATH}/style.css`,
+  `${GHPATH}/app.js`,
+  `${GHPATH}/NPU Logo Black-10.png`,
+  `${GHPATH}/manifest`,
+  `${GHPATH}/manifest/manifest.webmanifest`,
+];
