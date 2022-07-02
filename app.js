@@ -30,8 +30,20 @@ window.onload = function () {
     document.querySelector('#chair').value = data.chair;
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
+
+    registerSW();
   }
-}
+};
+
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    try {
+      await navigator.serviceWorker.register('/sw.js');
+    } catch (error) {
+      console.log('Service Worker registration failed');
+    }
+  }
+};
 
 
 // // on itemType change, preFill the applName
@@ -142,7 +154,7 @@ submit.addEventListener('click', (e) => {
   console.log('new row added');
   // clear inputs
   document.querySelector('#addItem').reset();
-
+  removeDemo();
 }
 );
 
@@ -156,27 +168,45 @@ document.querySelector('#table').addEventListener('click', (e) => {
 }
 );
 
-// // Warn before leaving page
-// window.onbeforeunload = function (e) {
-//   return 'Form contents will be lost!';
-// };
+// remove #demo if other tbody is present
+function removeDemo() {
+  if (document.querySelector('#table').children.length > 2) {
+    document.querySelector('#demo').remove();
+  }
+}
+
+// Warn before leaving page
+window.onbeforeunload = function (e) {
+  return 'Form contents will be lost!';
+};
 
 // set datepicker to today
 today = document.querySelector('#date').valueAsDate = new Date();
-date = today.toLocaleDateString().split('/').join('_');
+date = today.toLocaleDateString().split('/').join('-');
 
 // listen for print event
 window.addEventListener('beforeprint', () => {
   NPU = document.getElementById('NPU').value;
 
   // get date from datepicker
-  date = document.querySelector('#date').valueAsDate.toLocaleDateString().split('/').join('_');
+  date = document.querySelector('#date').valueAsDate.toLocaleDateString().split('/').join('-');
 
   document.title = `Voting Report_NPU-${NPU}_${date}`
+  document.getElementById('instructions').style.display = 'none';
+  document.querySelectorAll('.btn-close').forEach(btn => {
+    btn.style.display = 'none';
+  }
+  );
+
 });
 
 // reset title after print
 window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
   storeForm();
+  document.getElementById('instructions').style.display = 'block';
+  document.querySelectorAll('.btn-close').forEach(btn => {
+    btn.style.display = 'inline';
+  }
+  );
 });

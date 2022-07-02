@@ -99,6 +99,14 @@ p {
   width: 100%;
 }
 
+#demo {
+  color: darkgray;
+}
+
+#demo td {
+  border-color: lightgray !important;
+}
+
 @media only screen
 and (min-width : 320px)
 and (max-width : 768px) {

@@ -8,12 +8,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Planner's Voting Report</title>
+    <link rel="manifest" href="./manifest/manifest.webmanifest">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   </head>
   <header>
     <img id="dcpLogo" src="./NPU Logo Black-10.png" alt="Logo: City of Atlanta Dept of City Planning Neighborhood Planning Units">
@@ -106,7 +110,7 @@
           <th>NPU Recommendation</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id='demo'>
         <tr>
           <td class='typeBttn'><button type='button' class='btn-close'></button>ZRB</td>
           <td contenteditable="true">Z-12-345</td>
@@ -120,7 +124,8 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <br>
+    <footer>
+      <div id='instructions'>
       <br></br>
       <h5>Instructions:</h5>
       <ol>
@@ -131,6 +136,7 @@
         <li>When finished, print the page or print to .PDF</li>
         </ol>
       <p>Website Prepared by the Department of City Planning, City of Atlanta 2022</p>
+    </div>
     </footer>
     <script src="app.js" async defer></script>
   </body>
