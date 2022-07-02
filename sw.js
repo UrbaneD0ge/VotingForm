@@ -60,4 +60,6 @@ var URLS = [
   `${GHPATH}/style.css`,
   `${GHPATH}/app.js`,
   `${GHPATH}/NPU Logo Black-10.png`,
-]
+  `${GHPATH}/manifest`,
+  `${GHPATH}/manifest/manifest.webmanifest`,
+];
