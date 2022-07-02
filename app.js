@@ -38,7 +38,9 @@ window.onload = function () {
 async function registerSW() {
   if ('serviceWorker' in navigator) {
     try {
-      await navigator.serviceWorker.register('/sw.js');
+      await navigator.serviceWorker.register('/VotingForm/sw.js', {
+        scope: '/VotingForm/'
+      });
     } catch (error) {
       console.log('Service Worker registration failed');
     }
