@@ -3,7 +3,7 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/VotingForm/",
-    "start_url": "https://urbaned0ge.github.io/VotingForm/",
+    "start_url": "/VotingForm/",
     "name": "Planner's Report",
     "short_name": "DCP Report",
     "id": "dcp-report",
