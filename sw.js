@@ -10,8 +10,13 @@ const filesToCache = [
 ];
 
 self.addEventListener('install', async e => {
+  try {
   const cache = await caches.open(cacheName);
-  await cache.addAll(filesToCache);
+    await cache.addAll(filesToCache);
+    console.log('Cached all files');
+  } catch (error) {
+    console.log('Error caching files');
+  }
   return self.skipWaiting();
 });
 
