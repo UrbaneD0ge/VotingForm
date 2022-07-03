@@ -77,6 +77,15 @@ window.onload = function () {
     }
   };
 
+  // switch based on disposal to add a new dropdown for month
+  document.querySelector('disposal').addEventListener('change', deferCertain);
+  function deferCertain() {
+    switch (document.getElementById('disposal').value) {
+      case 'Defer':
+        document.getElementById('disposal').setAttribute('display', 'none')
+    }
+  }
+
   // on submit, add form data to table
   submit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -107,6 +116,7 @@ window.onload = function () {
     deleteButton.setAttribute('type', 'button');
     deleteButton.setAttribute('class', 'btn-close');
     applNameCell.textContent = applName;
+    applNameCell.setAttribute('contenteditable', 'true');
     disposalCell.textContent = disposal;
     commentsCell.textContent = comments;
 
