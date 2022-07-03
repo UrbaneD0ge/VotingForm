@@ -18,6 +18,14 @@ select, input, button, textarea {
   margin: 3px;
 }
 
+.pHead input {
+  align-content: right;
+}
+
+.pHead label {
+  justify-self: left;
+}
+
 .row {
   align-items: center;
 }
@@ -163,7 +171,18 @@ and (max-width : 425px) {
   }
 }
 
-input:-internal-autofill-selected {
-  background-color: #fff !important;
-  color: #000 !important;
+  input:-webkit-any(autofill),
+  input:-internal-autofill-selected,
+  /* input:-internal-autofill-blur, */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px inset;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    border-width: 2px !important;
+    border-radius: 5px;
+    background-color: #fff !important;
+    color: #000 !important;
+    font-size: 1.2rem !important;
 }

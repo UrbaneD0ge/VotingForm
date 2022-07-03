@@ -29,7 +29,7 @@
       <div class='row'>
         <div class='col'>
           <label class='pHead' for="neighborhood">Select NPU:</label>
-          <select  class='pHead' name="neighborhood" id="NPU">
+          <select class='pHead' name="neighborhood" id="NPU">
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
@@ -58,18 +58,21 @@
             <option value="Z">Z</option>
           </select>
           <br>
-          <label  class='pHead' for="chair">Chair:</label>
-          <input  class='pHead' type="text" name="chair" id="chair">
+          <label class='pHead' for="chair">Chair:</label>
+          <input class='pHead' type="text" name="chair" id="chair">
           <br>
-          <label  class='pHead' for="date">Meeting Date:</label>
-          <input  class='pHead' type="date" name="date" id="date">
+          <label class='pHead' for="date">Meeting Date:</label>
+          <input class='pHead' type="date" name="date" id="date">
         </div>
         <div class='col text-end'>
           <label class='pHead' for="location">Location:</label>
-          <input  class='pHead' type="text" name="location" id="location">
+          <input class='pHead' type="text" name="location" id="location">
           <br>
-          <label  class='pHead' for="planner">Planner:  </label>
-          <input  class='pHead' type="text" name="planner" id="planner">
+          <label class='pHead' for="planner">Planner:</label>
+          <input class='pHead' type="text" name="planner" id="planner">
+          <br>
+          <label class='pHead' for="attend">Attendance:</label>
+          <input class='pHead' type="number" name="attend" id="attend" min="0" max="404" step="5">
         </div>
       </div>
     </form>
@@ -97,7 +100,7 @@
           <option value='Defer'>Defer</option>
           <option value='Abstain'>Abstain</option>
         </select>
-        <textarea class='comments' name="conditions" id="conditions" cols="30" rows="5" placeholder='Comments / Conditions...'></textarea>
+        <textarea class='comments' name="conditions" id="conditions" cols="30" rows="3" placeholder='Comments / Conditions...'></textarea>
         <button id='submit' value='submit' class='mt-1'>Submit</button>
       </form>
     </legend>
@@ -150,14 +153,15 @@
       <div id='instructions'>
 
       <h5>Instructions:</h5>
-      <ol>
-        <li>Fill page header info.</li>
+      <ul>
+        <li>Fill page header info - this information is saved to your device for future use when you click print.</li>
         <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable, and select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
         <li>Add comments/conditions if applicable and submit.</li>
         <li>To delete an item, click the 'X' button next to the item. Comments are editable after submission, but application numbers are not.</li>
-
+        
         <li>When finished, click "Print". You may print the page if you have access to a printer, or print to .PDF for emailing.</li>
-        </ol>
+        <li>This page is built for Chrome browser, and can be downloaded for use offline.</li>
+      </ul>
         <br>
       <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'>Department of City Planning</a>, City of Atlanta | Send questions and bug reports to <a href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a></p>
     </div>
