@@ -77,15 +77,6 @@ window.onload = function () {
     }
   };
 
-  // switch based on disposal to add a new dropdown for month
-  document.querySelector('disposal').addEventListener('change', deferCertain);
-  function deferCertain() {
-    switch (document.getElementById('disposal').value) {
-      case 'Defer':
-        document.getElementById('disposal').setAttribute('display', 'none')
-    }
-  }
-
   // on submit, add form data to table
   submit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -183,8 +174,7 @@ window.onload = function () {
   // on print button click, print page
   document.querySelector('#print').addEventListener('click', () => {
     window.print();
-  }
-  );
+  });
 
   // listen for print event
   window.addEventListener('beforeprint', () => {
@@ -193,7 +183,10 @@ window.onload = function () {
     // get date from datepicker
     date = document.querySelector('#date').valueAsDate.toLocaleDateString().split('/').join('-');
 
+    // change document title
     document.title = `Voting Report_NPU-${NPU}_${date}`
+
+    // Hide instructions, print btn, and delete item buttons for printing
     document.getElementById('instructions').style.display = 'none';
     document.getElementById('print').style.display = 'none';
     document.querySelectorAll('.btn-close').forEach(btn => {
