@@ -129,12 +129,17 @@ ol {
   background-color: lightgrey;
 }
 
+#print {
+  border-radius: 5px;
+}
+
 #signature input {
   width: 100%;
 }
 
 #submit {
   grid-area: 3 / 3 / 4 / 4;
+  border-radius: 5px;;
 }
 
 @media only screen
