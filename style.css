@@ -24,6 +24,7 @@ body {
 select, input, button, textarea {
   font-size: 1.2rem;
   font-family: 'GT-Eesti-Regular', sans-serif;
+  border-radius: 5px;
 }
 
 .item {
