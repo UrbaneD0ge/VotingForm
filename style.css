@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap');
 
+@font-face {
+  font-family: 'Tungsten-SemiBold';
+  src: url(fonts/Tungsten-Semibold.otf) format('opentype');
+  letter-spacing: 1pt;
+}
+
+@font-face {
+  font-family: 'GT-Eesti-Regular';
+  src: url(fonts/GT-Eesti-Text-Regular.otf) format('opentype');
+}
+
+h1 {
+  font-family: 'Tungsten-SemiBold', sans-serif;
+  font-size: 2.5rem;
+  /* font-weight: 600; */
+  margin-bottom: 1rem;
+}
+
 body {
   font-size: 1.2rem;
   font-family: 'Nunito Sans', sans-serif;
@@ -180,8 +198,8 @@ and (max-width : 425px) {
   input:-internal-autofill-selected,
   /* input:-internal-autofill-blur, */
   input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
   input:-webkit-autofill:active{
     box-shadow: 0 0 0 30px inset;
     -webkit-box-shadow: 0 0 0 30px white inset !important;

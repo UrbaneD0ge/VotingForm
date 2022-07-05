@@ -169,7 +169,7 @@ window.onload = function () {
 
   // set datepicker to today
   today = document.querySelector('#date').valueAsDate = new Date();
-  date = today.toLocaleDateString().split('/').join('-');
+  // date = today.toLocaleDateString().split('/').join('-');
 
   // on print button click, print page
   document.querySelector('#print').addEventListener('click', () => {
