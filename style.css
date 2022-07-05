@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600&display=swap');
-
 @font-face {
   font-family: 'Tungsten-SemiBold';
   src: url(fonts/Tungsten-Semibold.otf) format('opentype');
-  letter-spacing: 1pt;
+  letter-spacing: 2pt;
 }
 
 @font-face {
@@ -20,12 +18,12 @@ h1 {
 
 body {
   font-size: 1.2rem;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'GT-Eesti-Regular', sans-serif;
 }
 
 select, input, button, textarea {
   font-size: 1.2rem;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'GT-Eesti-Regular', sans-serif;
 }
 
 .item {
@@ -93,7 +91,7 @@ td {
 
 textarea {
   grid-area: 2 / 1 / 3 / 4;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'GT-Eesti-Regular', sans-serif;
   font-size: large;
 }
 
