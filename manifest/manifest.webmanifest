@@ -7,7 +7,7 @@
     "name": "Planner's Report",
     "short_name": "DCP Report",
     "id": "dcp-report",
-    "description": "A mobile/offline tool for recording and submitting City of Atlanta NPU Voting reports.",
+    "description": "A mobile-friendly, offline-capable tool for recording and submitting City of Atlanta NPU Voting reports.",
     "icons": [
         {
             "src": "./icon-192x192.png",
