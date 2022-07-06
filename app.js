@@ -176,15 +176,21 @@ window.onload = function () {
     window.print();
   });
 
+  // get date from datepicker
+  let field = document.querySelector('#date');
+
   // listen for print event
   window.addEventListener('beforeprint', () => {
     NPU = document.getElementById('NPU').value;
 
-    // get date from datepicker
-    date = document.querySelector('#date').valueAsDate.toLocaleDateString().split('/').join('-');
+    // Get the date
+    let date = new Date(`${field.value}T00:00:00`);
+    // Format date as MM-DD-YYYY
+    let dateString = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+    console.log(dateString);
 
     // change document title
-    document.title = `Voting Report_NPU-${NPU}_${date}`
+    document.title = `Voting Report_NPU-${NPU}_${dateString}`
 
     // Hide instructions, print btn, and delete item buttons for printing
     document.getElementById('instructions').style.display = 'none';
