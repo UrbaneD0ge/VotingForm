@@ -49,6 +49,10 @@ window.onload = function () {
         applName.value = 'Z-22-';
         applName.setAttribute('placeholder', 'Z-');
         break;
+      case 'SUP':
+        applName.value = 'U-22-';
+        applName.setAttribute('placeholder', 'U-');
+        break;
       case 'BZA':
         applName.value = 'V-22-';
         applName.setAttribute('placeholder', 'V-');
