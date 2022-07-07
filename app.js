@@ -57,8 +57,8 @@ window.onload = function () {
         applName.value = 'V-22-';
         applName.setAttribute('placeholder', 'V-');
         break;
-      case 'Text Amendment/ Zoning Ordinance':
-        applName.value = '22-O-';
+      case 'Text Amendment':
+        applName.value = 'Z-22-';
         applName.setAttribute('placeholder', 'CDP-');
         break;
       case 'Land Use/ CDP':
