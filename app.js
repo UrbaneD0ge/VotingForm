@@ -59,13 +59,13 @@ window.onload = function () {
         break;
       case 'Text Amendment':
         applName.value = 'Z-22-';
-        applName.setAttribute('placeholder', 'CDP-');
+        applName.setAttribute('placeholder', 'Z-');
         break;
       case 'Land Use/ CDP':
         applName.value = 'CDP-22-';
         applName.setAttribute('placeholder', 'CDP-');
         break;
-      case 'SDC':
+      case 'SD':
         applName.value = 'SD-22-';
         applName.setAttribute('placeholder', 'SD-')
         break;
