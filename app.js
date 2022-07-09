@@ -9,7 +9,6 @@ function storeForm() {
   let chair = document.querySelector('#chair').value.trim() || '';
   let loc = document.querySelector('#location').value.trim() || '';
   let planner = document.querySelector('#planner').value.trim() || '';
-  let date = document.querySelector('#date').value || '';
 // save inputs to object
   let data = {
     NPU: NPU,
@@ -61,7 +60,7 @@ window.onload = function () {
         applName.value = 'Z-22-';
         applName.setAttribute('placeholder', 'Z-');
         break;
-      case 'Land Use/ CDP':
+      case 'CDP':
         applName.value = 'CDP-22-';
         applName.setAttribute('placeholder', 'CDP-');
         break;
@@ -195,7 +194,7 @@ window.onload = function () {
 
     // change document title
     document.title = `Voting Report_NPU-${NPU}_${dateString}`
-
+    document.querySelector('#header').innerText = `VOTING REPORT: NPU-${NPU}  |  ${dateString}`;
     // Hide instructions, print btn, and delete item buttons for printing
     document.getElementById('instructions').style.display = 'none';
     document.getElementById('print').style.display = 'none';
