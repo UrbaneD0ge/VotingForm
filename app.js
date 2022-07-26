@@ -9,7 +9,7 @@ function storeForm() {
   let chair = document.querySelector('#chair').value.trim() || '';
   let loc = document.querySelector('#location').value.trim() || '';
   let planner = document.querySelector('#planner').value.trim() || '';
-// save inputs to object
+  // save inputs to object
   let data = {
     NPU: NPU,
     chair: chair,
@@ -112,6 +112,7 @@ window.onload = function () {
     applNameCell.textContent = applName;
     applNameCell.setAttribute('contenteditable', 'true');
     disposalCell.textContent = disposal;
+    disposalCell.classList.add('class', 'disp');
     commentsCell.textContent = comments;
 
     // wrap each new item in a <tbody>
@@ -165,6 +166,20 @@ window.onload = function () {
     }
   }
 
+  // on disposalCell click, show select box
+  document.querySelector('#table').addEventListener('click', (e) => {
+    if (e.target.classList.contains('disp')) {
+      // e.target.setAttribute('contenteditable', 'false');
+      e.target.innerHTML = '<select><option value="Approval">Approval</option><option value="Approval w/C">Approval w/C</option><option value="Denial">Denial</option><option value="Defer">Defer</option>      <option value="Abstain">Abstain</option></select>';
+      e.target.firstChild.focus();
+    }
+    e.target.onBlur = function () {
+      e.target.innerHTML = '<td class="disp">' + e.target.value + '</td>';
+      e.target.innerHTML = e.target.value;
+    }
+  }
+  );
+
   // Warn before leaving page
   window.onbeforeunload = function (e) {
     return 'Form contents will be lost!';
@@ -211,7 +226,7 @@ window.onload = function () {
     storeForm();
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('print').style.display = 'block';
-        document.querySelectorAll('.btn-close').forEach(btn => {
+    document.querySelectorAll('.btn-close').forEach(btn => {
       btn.style.display = 'inline';
     }
     );
