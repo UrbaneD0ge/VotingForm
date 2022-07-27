@@ -81,8 +81,16 @@ tbody > tr :nth-child(2) {
   width: 50%;
 }
 
-tr :nth-child(3) {
+tr > td:nth-child(3) {
   text-align: end;
+}
+
+tr > th:nth-child(3) {
+  text-align: end;
+}
+
+tr > th:nth-child(2) {
+  text-align: center;
 }
 
 td {

@@ -30,207 +30,244 @@ window.onload = function () {
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
   };
+};
 
-  // on itemType change, preFill the applName
-  document.querySelector('#itmType').addEventListener('change', preFill);
+// on itemType change, preFill the applName
+document.querySelector('#itmType').addEventListener('change', preFill);
 
-  function preFill() {
-    switch (document.querySelector('#itmType').value) {
-      case 'MOSE':
-        applName.setAttribute('placeholder', 'Applicant Name');
-        applName.value = ('');
-        break;
-      case 'LRB':
-        applName.setAttribute('placeholder', 'Applicant Name');
-        applName.value = ('');
-        break;
-      case 'ZRB':
-        applName.value = 'Z-22-';
-        applName.setAttribute('placeholder', 'Z-');
-        break;
-      case 'SUP':
-        applName.value = 'U-22-';
-        applName.setAttribute('placeholder', 'U-');
-        break;
-      case 'BZA':
-        applName.value = 'V-22-';
-        applName.setAttribute('placeholder', 'V-');
-        break;
-      case 'Text Amendment':
-        applName.value = 'Z-22-';
-        applName.setAttribute('placeholder', 'Z-');
-        break;
-      case 'CDP':
-        applName.value = 'CDP-22-';
-        applName.setAttribute('placeholder', 'CDP-');
-        break;
-      case 'SD':
-        applName.value = 'SD-22-';
-        applName.setAttribute('placeholder', 'SD-')
-        break;
-      case 'LOR':
-        applName.value = 'LOR-22-';
-        applName.setAttribute('placeholder', 'LOR-')
-        // applName.setAttribute('type', 'number');
-        break;
-      case 'N/A':
-        applName.value = '';
-        applName.removeAttribute('placeholder');
-        break;
-    }
-  };
+function preFill() {
+  switch (document.querySelector('#itmType').value) {
+    case 'MOSE':
+      applName.setAttribute('placeholder', 'Applicant Name');
+      applName.value = ('');
+      break;
+    case 'LRB':
+      applName.setAttribute('placeholder', 'Applicant Name');
+      applName.value = ('');
+      break;
+    case 'ZRB':
+      applName.value = 'Z-22-';
+      applName.setAttribute('placeholder', 'Z-');
+      break;
+    case 'SUP':
+      applName.value = 'U-22-';
+      applName.setAttribute('placeholder', 'U-');
+      break;
+    case 'BZA':
+      applName.value = 'V-22-';
+      applName.setAttribute('placeholder', 'V-');
+      break;
+    case 'Text Amendment':
+      applName.value = 'Z-22-';
+      applName.setAttribute('placeholder', 'Z-');
+      break;
+    case 'CDP':
+      applName.value = 'CDP-22-';
+      applName.setAttribute('placeholder', 'CDP-');
+      break;
+    case 'SD':
+      applName.value = 'SD-22-';
+      applName.setAttribute('placeholder', 'SD-')
+      break;
+    case 'LOR':
+      applName.value = 'LOR-22-';
+      applName.setAttribute('placeholder', 'LOR-')
+      // applName.setAttribute('type', 'number');
+      break;
+    case 'N/A':
+      applName.value = '';
+      applName.removeAttribute('placeholder');
+      break;
+  }
+};
 
-  // on submit, add form data to table
-  submit.addEventListener('click', (e) => {
-    e.preventDefault();
+// on submit, add form data to table
+submit.addEventListener('click', (e) => {
+  e.preventDefault();
 
-    // // Add Item form
-    let itmType = document.querySelector('#itmType').selectedOptions[0].value;
-    let applName = document.querySelector('#applName').value.trim();
-    let disposal = document.querySelector('#disposal').value || '';
-    let comments = document.querySelector('#conditions').value.trim() || '';
+  // // Add Item form
+  let itmType = document.querySelector('#itmType').selectedOptions[0].value;
+  let applName = document.querySelector('#applName').value.trim();
+  let disposal = document.querySelector('#disposal').value || '';
+  let comments = document.querySelector('#conditions').value.trim() || '';
 
 
-    if (itmType === '' || applName === '' || disposal === '') {
-      ;
-      return;
-    }
+  if (itmType === '' || applName === '') {
+    ;
+    return;
+  }
 
-    // create table row
-    let row = document.createElement('tr');
-    // create table cells
-    let itmTypeCell = document.createElement('td');
-    let deleteButton = document.createElement('button');
-    let applNameCell = document.createElement('td');
-    let disposalCell = document.createElement('td');
-    let commentsCell = document.createElement('td');
-    // add text to cells
-    itmTypeCell.innerText = itmType;
-    itmTypeCell.prepend(deleteButton);
-    deleteButton.setAttribute('type', 'button');
-    deleteButton.setAttribute('class', 'btn-close');
-    applNameCell.textContent = applName;
-    applNameCell.setAttribute('contenteditable', 'true');
-    disposalCell.textContent = disposal;
-    disposalCell.classList.add('class', 'disp');
+  // create table row
+  let row = document.createElement('tr');
+  // create table cells
+  let itmTypeCell = document.createElement('td');
+  let deleteButton = document.createElement('button');
+  let applNameCell = document.createElement('td');
+  let disposalCell = document.createElement('td');
+  let commentsCell = document.createElement('td');
+  // add text to cells
+  itmTypeCell.innerText = itmType;
+  itmTypeCell.prepend(deleteButton);
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.setAttribute('class', 'btn-close');
+  applNameCell.textContent = applName;
+  applNameCell.setAttribute('contenteditable', 'true');
+  applNameCell.classList.add('applName');
+  disposalCell.textContent = disposal;
+  disposalCell.classList.add('disp');
+  commentsCell.textContent = comments;
+  commentsCell.classList.add('comments');
+
+  // wrap each new item in a <tbody>
+  let tbody = document.createElement('tbody');
+  tbody.append(row);
+
+  // append new tbody to table
+  table.append(tbody);
+
+  // append cells to row
+  row.appendChild(itmTypeCell);
+  row.appendChild(applNameCell);
+  row.appendChild(disposalCell);
+
+  if (comments !== '') {
+    // create new row for comments
+    let commentsRow = document.createElement('tr');
+    // create new cell for comments
+    // let commentsCell = document.createElement('td')
+    commentsCell.setAttribute('colspan', '3');
+    commentsCell.setAttribute('contenteditable', 'true');
+    commentsCell.classList.add('comments');
+    // add text to cell
     commentsCell.textContent = comments;
+    // append cell to row
+    commentsRow.appendChild(commentsCell);
+    // append row to tbody
+    tbody.appendChild(commentsRow);
+  }
 
-    // wrap each new item in a <tbody>
-    let tbody = document.createElement('tbody');
-    tbody.append(row);
+  console.log('new row added');
+  // clear inputs
+  document.querySelector('#addItem').reset();
+  removeDemo();
+}
+);
 
-    // append new tbody to table
-    table.append(tbody);
+// on button click, remove that tbody
+document.querySelector('#table').addEventListener('click', (e) => {
+  if (e.target.classList.contains('btn-close')) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      e.target.parentElement.parentElement.parentElement.remove();
+    } else { return; }
+  }
+}
+);
 
-    // append cells to row
-    row.appendChild(itmTypeCell);
-    row.appendChild(applNameCell);
-    row.appendChild(disposalCell);
+// remove #demo if other tbody is present
+// removeDemo() gets called on every submit, regardless of if #demo is present
+function removeDemo() {
+  if (document.querySelector('#table').children.length > 2) {
+    document.querySelector('#demo').remove();
+  }
+}
 
-    if (comments !== '') {
-      // create new row for comments
-      let commentsRow = document.createElement('tr');
-      // create new cell for comments
-      let commentsCell = document.createElement('td')
-      commentsCell.setAttribute('colspan', '3');
-      commentsCell.setAttribute('contenteditable', 'true');
-      // add text to cell
-      commentsCell.textContent = comments;
-      // append cell to row
-      commentsRow.appendChild(commentsCell);
-      // append row to tbody
-      tbody.appendChild(commentsRow);
-    }
-
-    console.log('new row added');
-    // clear inputs
-    document.querySelector('#addItem').reset();
-    removeDemo();
+// on disposalCell click, show select box
+document.querySelector('#table').addEventListener('click', (e) => {
+  if (e.target.classList.contains('disp')) {
+    // e.target.setAttribute('contenteditable', 'false');
+    e.target.innerHTML = '<select><option value="Approval">Approval</option><option value="Approval w/C">Approval w/C</option><option value="Denial">Denial</option><option value="Defer">Defer</option><option value="Abstain">Abstain</option></select>';
+    e.target.firstChild.focus();
+  }
+  // on select change, change selection to td
+  e.target.addEventListener('change', (e) => {
+    e.target.parentElement.textContent = e.target.value;
   }
   );
+}
+);
 
-  // on button click, remove that tbody
-  document.querySelector('#table').addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-close')) {
-      if (confirm('Are you sure you want to delete this item?')) {
-        e.target.parentElement.parentElement.parentElement.remove();
-      } else { return; }
-    }
+// listen for tab key press in applName cells, add new row for comments
+document.querySelector('#table').addEventListener('keydown', (e) => {
+  if (e.target.classList.contains('applName') === true
+    && e.key === 'Tab'
+    && e.target.parentElement.nextElementSibling == null
+    || e.target.parentElement.nextElementSibling.classList.contains('comments') === false
+    // Problem here - will add a new row for comments even if there is already one!!
+  ) {
+    // create new row for comments
+    let commentsRow = document.createElement('tr');
+    // create new cell for comments
+    let commentsCell = document.createElement('td')
+    commentsCell.setAttribute('colspan', '3');
+    commentsCell.setAttribute('contenteditable', 'true');
+    commentsCell.classList.add('comments');
+    // add text to cell
+    commentsCell.textContent = '';
+    // append cell to row
+    commentsRow.appendChild(commentsCell);
+    // append row to tbody
+    e.target.parentElement.parentElement.parentElement.appendChild(commentsRow);
   }
-  );
+}
+);
 
-  // remove #demo if other tbody is present
-  function removeDemo() {
-    if (document.querySelector('#table').children.length > 2) {
-      document.querySelector('#demo').remove();
-    }
-  }
 
-  // on disposalCell click, show select box
-  document.querySelector('#table').addEventListener('click', (e) => {
-    if (e.target.classList.contains('disp')) {
-      // e.target.setAttribute('contenteditable', 'false');
-      e.target.innerHTML = '<select><option value="Approval">Approval</option><option value="Approval w/C">Approval w/C</option><option value="Denial">Denial</option><option value="Defer">Defer</option>      <option value="Abstain">Abstain</option></select>';
-      e.target.firstChild.focus();
-    }
-    e.target.onBlur = function () {
-      e.target.innerHTML = '<td class="disp">' + e.target.value + '</td>';
-      e.target.innerHTML = e.target.value;
-    }
-  }
-  );
 
-  // Warn before leaving page
-  window.onbeforeunload = function (e) {
-    return 'Form contents will be lost!';
-  };
+// Warn before leaving page
+window.onbeforeunload = function (e) {
+  return 'Form contents will be lost!';
+};
 
-  // set datepicker to today
-  today = document.querySelector('#date').valueAsDate = new Date();
-  // date = today.toLocaleDateString().split('/').join('-');
+// set datepicker to today
+today = document.querySelector('#date').valueAsDate = new Date();
+// date = today.toLocaleDateString().split('/').join('-');
 
-  // on print button click, print page
-  document.querySelector('#print').addEventListener('click', () => {
-    window.print();
-  });
+// on print button click, print page
+document.querySelector('#print').addEventListener('click', () => {
+  window.print();
+});
 
-  // get date from datepicker
-  let field = document.querySelector('#date');
+// get date from datepicker
+let field = document.querySelector('#date');
 
-  // listen for print event
-  window.addEventListener('beforeprint', () => {
-    NPU = document.getElementById('NPU').value;
+// listen for print event
+window.addEventListener('beforeprint', () => {
+  NPU = document.getElementById('NPU').value;
 
-    // Get the date
-    let date = new Date(`${field.value}T00:00:00`);
-    // Format date as MM-DD-YYYY
-    let dateString = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-    console.log(dateString);
+  // Get the date
+  let date = new Date(`${field.value}T00:00:00`);
+  // Format date as MM-DD-YYYY
+  let dateString = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+  console.log(dateString);
 
-    // change document title
-    document.title = `Voting Report_NPU-${NPU}_${dateString}`
-    document.querySelector('#header').innerText = `VOTING REPORT: NPU-${NPU}  |  ${dateString}`;
-    // Hide instructions, print btn, and delete item buttons for printing
-    document.getElementById('instructions').style.display = 'none';
-    document.getElementById('print').style.display = 'none';
-    document.querySelectorAll('.btn-close').forEach(btn => {
-      btn.style.display = 'none';
-    }
-    );
+  // change document title
+  document.title = `Voting Report_NPU-${NPU}_${dateString}`
+  document.querySelector('#header').innerText = `VOTING REPORT: NPU-${NPU}  |  ${dateString}`;
+  // Hide instructions, print btn, and delete item buttons for printing
+  document.getElementById('instructions').style.display = 'none';
+  document.getElementById('print').style.display = 'none';
+  document.querySelectorAll('.btn-close').forEach(btn => {
+    btn.style.display = 'none';
     document.getElementById('signature').style.display = 'block';
   });
-
-  // reset title after print
-  window.addEventListener('afterprint', () => {
-    document.title = 'Planner’s Voting Report';
-    storeForm();
-    document.getElementById('instructions').style.display = 'block';
-    document.getElementById('print').style.display = 'block';
-    document.querySelectorAll('.btn-close').forEach(btn => {
-      btn.style.display = 'inline';
+  // if comment cells are empty, remove them
+  document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
+    if (cell.textContent === '') {
+      cell.parentElement.remove();
     }
-    );
-    document.getElementById('signature').style.display = 'none';
   }
-  )
-};
+  );
+});
+
+
+// reset title after print
+window.addEventListener('afterprint', () => {
+  document.title = 'Planner’s Voting Report';
+  storeForm();
+  document.getElementById('instructions').style.display = 'block';
+  document.getElementById('print').style.display = 'block';
+  document.querySelectorAll('.btn-close').forEach(btn => {
+    btn.style.display = 'inline';
+  });
+  document.getElementById('signature').style.display = 'none';
+});

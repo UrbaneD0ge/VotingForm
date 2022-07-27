@@ -105,15 +105,15 @@
         <option value='N/A'>Other...</option>
       </select>
       <input type="text" name="applName" id="applName" placeholder='Application number or name' required>
-      <select name='disposal' id='disposal' required>
-        <option value='' hidden selected disabled>Recommend</option>
+      <select name='disposal' id='disposal'>
+        <option value='PENDING' hidden selected disabled>Recommend</option>
         <option value='Approval'>Approval</option>
         <option value='Approval w/ Conditions'>Approve w/C</option>
         <option value='Denial'>Denial</option>
         <option value='Defer'>Defer</option>
         <option value='Abstain'>Abstain</option>
       </select>
-      <textarea class='comments' name="conditions" id="conditions" cols="30" rows="3"
+      <textarea class='comments' name="conditions" id="conditions" cols="30" rows="2"
         placeholder='Comments / Conditions...'></textarea>
       <button id='submit' value='submit' class='mt-1'>Submit</button>
     </form>
