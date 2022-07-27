@@ -1,6 +1,8 @@
 const submit = document.getElementById('submit');
 const table = document.getElementById('table');
 let suffix = document.getElementById('itmType').value;
+// import api key from .env file
+const apiKey = process.env.API_KEY;
 
 // function to store the values of the form in local storage
 function storeForm() {
@@ -9,7 +11,7 @@ function storeForm() {
   let chair = document.querySelector('#chair').value.trim() || '';
   let loc = document.querySelector('#location').value.trim() || '';
   let planner = document.querySelector('#planner').value.trim() || '';
-// save inputs to object
+  // save inputs to object
   let data = {
     NPU: NPU,
     chair: chair,
@@ -79,6 +81,11 @@ window.onload = function () {
         break;
     }
   };
+
+  // restore data from localStorage if it exists
+  if (localStorage.getItem('tableData')) {
+    loadTable();
+  }
 
   // on submit, add form data to table
   submit.addEventListener('click', (e) => {
@@ -177,6 +184,7 @@ window.onload = function () {
   // on print button click, print page
   document.querySelector('#print').addEventListener('click', () => {
     window.print();
+    storeTable();
   });
 
   // get date from datepicker
@@ -208,10 +216,9 @@ window.onload = function () {
   // reset title after print
   window.addEventListener('afterprint', () => {
     document.title = 'Planner’s Voting Report';
-    storeForm();
     document.getElementById('instructions').style.display = 'block';
     document.getElementById('print').style.display = 'block';
-        document.querySelectorAll('.btn-close').forEach(btn => {
+    document.querySelectorAll('.btn-close').forEach(btn => {
       btn.style.display = 'inline';
     }
     );
@@ -219,3 +226,107 @@ window.onload = function () {
   }
   )
 };
+
+// store table data in localStorage
+function storeTable() {
+  let table = document.querySelector('#table');
+  let tableData = [];
+  let tableRows = table.querySelectorAll('tbody');
+  tableRows.forEach(row => {
+    let rowData = [];
+    let rowCells = row.querySelectorAll('td');
+    rowCells.forEach(cell => {
+      rowData.push(cell.innerText);
+    }
+    );
+    tableData.push(rowData);
+  }
+  );
+  localStorage.setItem('tableData', JSON.stringify(tableData));
+}
+
+
+
+// load table data from localStorage if it exists
+function loadTable() {
+  if (localStorage.getItem('tableData')) {
+    let tableData = JSON.parse(localStorage.getItem('tableData'));
+    let table = document.querySelector('#table');
+    let tbody = document.createElement('tbody');
+    table.append(tbody);
+    tableData.forEach(row => {
+      let row = document.createElement('tr');
+      let itmTypeCell = document.createElement('td');
+      let deleteButton = document.createElement('button');
+      let applNameCell = document.createElement('td');
+      let disposalCell = document.createElement('td');
+      let commentsCell = document.createElement('td');
+      itmTypeCell.innerText = row.itmType;
+      itmTypeCell.prepend(deleteButton);
+      deleteButton.setAttribute('type', 'button');
+      deleteButton.setAttribute('class', 'btn-close');
+      applNameCell.textContent = row.applName;
+      applNameCell.setAttribute('contenteditable', 'true');
+      disposalCell.textContent = row.disposal;
+      commentsCell.textContent = row.comments;
+      tbody.append(row);
+      row.append(itmTypeCell);
+      row.append(applNameCell);
+      row.append(disposalCell);
+      if (row.comments !== '') {
+        let commentsRow = document.createElement('tr');
+        let commentsCell = document.createElement('td')
+        commentsCell.setAttribute('colspan', '3');
+        commentsCell.setAttribute('contenteditable', 'true');
+        commentsCell.textContent = row.comments;
+        commentsRow.append(commentsCell);
+        tbody.append(commentsRow);
+      }
+    }
+    );
+  }
+}
+
+// send table data to Airtable
+function sendForm() {
+  forEach(document.querySelectorAll('#table tbody tr'), (row, i) => {
+    let rowData = {};
+    let cells = row.querySelectorAll('td');
+    cells.forEach((cell, i) => {
+      if (i === 0) {
+        rowData.itmType = cell.innerText;
+      } else if (i === 1) {
+        rowData.applName = cell.innerText;
+      } else if (i === 2) {
+        rowData.disposal = cell.innerText;
+      } else if (i === 3) {
+        rowData.comments = cell.innerText;
+      }
+    }
+    );
+    console.log(rowData);
+
+    base('Table 1').create(
+      {
+        "NPU": document.getElementById('NPU').value,
+        "Date": document.getElementById('date').value,
+        "Table": JSON.parse(localStorage.getItem('tableData'))
+      },
+      {
+        fields: {
+          "fldSdIFMSRkdJGd9Z": document.getElementById('NPU').value + '-' + document.getElementById('date').value,
+          "fldck9li8kMT9xBLx": rowData.itmType,
+          "fldYxaSmdxSjS1N0k": rowData.applName,
+          "fldBuDdWpnXqlmr9T": [rowData.disposal],
+          "fldswanafOKIWEGy3": rowData.comments,
+          "fldMb04KSFvOpBXf9": [""]
+        },
+        function(err, record) {
+          if (err) { console.error(err); return; }
+          console.log(record.getId());
+        }
+      }
+    );
+  }
+  );
+}
