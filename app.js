@@ -163,13 +163,14 @@ document.querySelector('#table').addEventListener('click', (e) => {
 }
 );
 
-// remove #demo if other tbody is present
-// removeDemo() gets called on every submit, regardless of if #demo is present
+// remove #demo if it exists
 function removeDemo() {
-  if (document.querySelector('#table').children.length > 2) {
+  if (document.querySelector('#demo') === null) {
+    return;
+  } else {
     document.querySelector('#demo').remove();
   }
-}
+};
 
 // on disposalCell click, show select box
 document.querySelector('#table').addEventListener('click', (e) => {
@@ -179,21 +180,16 @@ document.querySelector('#table').addEventListener('click', (e) => {
     e.target.firstChild.focus();
   }
   // on select change, change selection to td
-  e.target.addEventListener('change', (e) => {
-    e.target.parentElement.textContent = e.target.value;
-  }
-  );
-}
-);
+  e.target.addEventListener('blur', (e) => {
+    if (e.target.tagName === 'SELECT') {
+      e.target.parentElement.textContent = e.target.value;
+    }
+  });
+});
 
 // listen for tab key press in applName cells, add new row for comments
 document.querySelector('#table').addEventListener('keydown', (e) => {
-  if (e.target.classList.contains('applName') === true
-    && e.key === 'Tab'
-    && e.target.parentElement.nextElementSibling == null
-    || e.target.parentElement.nextElementSibling.classList.contains('comments') === false
-    // Problem here - will add a new row for comments even if there is already one!!
-  ) {
+  if (e.target.classList.contains('applName') === true && e.key === 'Tab' && e.target.parentElement.nextElementSibling == null) {
     // create new row for comments
     let commentsRow = document.createElement('tr');
     // create new cell for comments
@@ -206,7 +202,7 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
     // append cell to row
     commentsRow.appendChild(commentsCell);
     // append row to tbody
-    e.target.parentElement.parentElement.parentElement.appendChild(commentsRow);
+    e.target.parentElement.parentElement.appendChild(commentsRow);
   }
 }
 );
