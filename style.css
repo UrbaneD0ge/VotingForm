@@ -27,6 +27,12 @@ select, input, button, textarea {
   border-radius: 5px;
 }
 
+.highlight {
+  background-color: #ff424281;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
 .item {
   background-color: lightgray;
 }

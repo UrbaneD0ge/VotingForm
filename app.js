@@ -92,7 +92,7 @@ submit.addEventListener('click', (e) => {
   let comments = document.querySelector('#conditions').value.trim() || '';
 
 
-  if (itmType === '' || applName === '') {
+  if (itmType === 'Type' || applName === '') {
     ;
     return;
   }
@@ -179,7 +179,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
     e.target.innerHTML = '<select><option value="Approval">Approval</option><option value="Approval w/C">Approval w/C</option><option value="Denial">Denial</option><option value="Defer">Defer</option><option value="Abstain">Abstain</option></select>';
     e.target.firstChild.focus();
   }
-  // on select change, change selection to td
+  // on blur, change selected value to td text
   e.target.addEventListener('blur', (e) => {
     if (e.target.tagName === 'SELECT') {
       e.target.parentElement.textContent = e.target.value;
@@ -207,8 +207,6 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
 }
 );
 
-
-
 // Warn before leaving page
 window.onbeforeunload = function (e) {
   return 'Form contents will be lost!';
@@ -220,8 +218,25 @@ today = document.querySelector('#date').valueAsDate = new Date();
 
 // on print button click, print page
 document.querySelector('#print').addEventListener('click', () => {
+  // if any dispCell is "PENDING", cancel print and highlight cell
+  let dispCell = document.querySelectorAll('.disp');
+  for (let i = 0; i < dispCell.length; i++) {
+    if (dispCell[i].textContent === 'PENDING') {
+      dispCell[i].classList.add('highlight');
+      return;
+    }
+  }
+  // if no dispCell is "PENDING", print page
   window.print();
 });
+
+// // when dispCell selection changes, remove that dispCell highlight
+// document.querySelectorAll('.disp').addEventListener('change', (e) => {
+//   if (e.target.classList.contains('disp')) {
+//     e.target.classList.remove('highlight');
+//   }
+// }
+// );
 
 // get date from datepicker
 let field = document.querySelector('#date');
@@ -251,10 +266,13 @@ window.addEventListener('beforeprint', () => {
     if (cell.textContent === '') {
       cell.parentElement.remove();
     }
+  });
+  // remove all highlight classes
+  document.querySelectorAll('.highlight').forEach(cell => {
+    cell.classList.remove('highlight');
   }
   );
 });
-
 
 // reset title after print
 window.addEventListener('afterprint', () => {
