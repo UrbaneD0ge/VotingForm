@@ -29,7 +29,6 @@ select, input, button, textarea {
 
 .highlight {
   background-color: #ff424281;
-  border-radius: 5px;
   padding: 1rem;
 }
 
