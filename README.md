@@ -5,7 +5,7 @@
 
 ##### An online tool for the Atlanta Department of City Planning to generate and submit NPU voting report forms.
 
-![urbaned0ge github io_VotingForm_](https://user-images.githubusercontent.com/88916382/177017981-8313cf94-63c2-4ece-b18c-34554de1c055.png)
+![urbaned0ge github io_VotingForm_ (2)](https://user-images.githubusercontent.com/88916382/181673287-2ce8ea42-6620-4dfd-81e8-7501325f20e8.png)
 
 ## Table of Contents
 
