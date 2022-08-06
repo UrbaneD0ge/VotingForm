@@ -285,3 +285,19 @@ window.addEventListener('afterprint', () => {
   });
   document.getElementById('signature').style.display = 'none';
 });
+
+//dark mode
+document.querySelector('#toggleTheme').addEventListener('click', () => {
+  document.getElementById('toggleTheme').classList.toggle('dark');
+  document.body.classList.toggle('dark');
+  // document.querySelectorAll('input, textArea, select').forEach(input => {
+  //   input.classList.toggle('dark');
+  // });
+
+  //conditionally replace dcp logo dark with dcp logo white
+  if (document.getElementById('toggleTheme').classList.contains('dark')) {
+  document.querySelector('#dcpLogo').src = 'NPU Logo White.png';
+  } else {
+  document.querySelector('#dcpLogo').src = 'NPU Logo Black.png';
+  }
+});

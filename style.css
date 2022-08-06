@@ -27,6 +27,11 @@ select, input, button, textarea {
   border-radius: 5px;
 }
 
+.dark {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
 .highlight {
   background-color: #ff424281;
   padding: 1rem;
@@ -109,6 +114,11 @@ textarea {
   font-size: large;
 }
 
+textarea.dark {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
 p {
   font-size: .8rem;
   position: relative;
@@ -144,6 +154,11 @@ ol {
   min-width: 1.5in !important;
 }
 
+#dcpLogo.dark {
+  filter: invert(100%);
+  -webkit-filter: invert(100%);
+}
+
 #demo {
   color: darkgray;
 }
@@ -170,6 +185,14 @@ ol {
 #submit {
   grid-area: 3 / 3 / 4 / 4;
   border-radius: 5px;;
+}
+
+#toggleTheme {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  margin: 5px;
 }
 
 @media only screen
