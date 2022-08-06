@@ -12,7 +12,7 @@
   <meta name="description"
     content="A mobile-friendly, offline-capable tool for recording and submitting City of Atlanta NPU Voting reports.">
   <link rel="canonical" href="https://github.com/UrbaneD0ge/VotingForm/" />
-  <link rel="manifest" href="/VotingForm/manifest/manifest.webmanifest">
+  <link rel="manifest" href="/manifest/manifest.webmanifest">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="DCP Planner's Report">
   <meta property="og:site_name" content="Planner's Report">
@@ -26,7 +26,7 @@
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./manifest/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./manifest/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./manifest/favicon-16x16.png">
 </head>
@@ -205,16 +205,21 @@
     </div>
   </footer>
   <script src="app.js" async defer></script>
-  <script>
+  <script type='module'>
     if ('serviceWorker' in navigator) {
       try {
-        navigator.serviceWorker.register('/VotingForm/sw.js', {
-          scope: '/VotingForm/'
-        });
+        navigator.serviceWorker.register(new URL('/sw.js', import.meta.url),
+          {
+            scope: '/VotingForm/',
+            type: 'module'
+          }).then(function (registration) {
+            console.log('Service worker registered: ', registration);
+          });
       } catch (error) {
-        console.log('Service Worker registration failed');
+        console.log('Service Worker Registration Failed: ', error);
       }
     }
+
   </script>
 </body>
 
