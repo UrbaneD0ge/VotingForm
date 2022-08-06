@@ -208,12 +208,15 @@
   <script type='module'>
     if ('serviceWorker' in navigator) {
       try {
-        navigator.serviceWorker.register(URL('/sw.js'), import.meta.url), {
-          scope: '/VotingForm/',
-          type: 'module'
-        };
+        navigator.serviceWorker.register(new URL('/sw.js', import.meta.url),
+          {
+            scope: '/VotingForm/',
+            type: 'module'
+          }).then(function (registration) {
+            console.log('Service worker registered: ', registration);
+          });
       } catch (error) {
-        console.log('Service Worker registration failed');
+        console.log('Service Worker Registration Failed: ', error);
       }
     }
   </script>
