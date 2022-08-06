@@ -1,0 +1,26 @@
+{
+  "name": "votingform",
+  "version": "1.0.0",
+  "description": "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)",
+  "main": "dist/app.js",
+  "source": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UrbaneD0ge/VotingForm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UrbaneD0ge/VotingForm/issues"
+  },
+  "homepage": "https://github.com/UrbaneD0ge/VotingForm#readme",
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.7.0",
+    "@parcel/transformer-webmanifest": "^2.7.0",
+    "parcel": "^2.7.0"
+  }
+}
