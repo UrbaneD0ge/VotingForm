@@ -2,7 +2,8 @@
   "name": "votingform",
   "version": "1.0.0",
   "description": "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)",
-  "main": "app.js",
+  "main": "dist/app.js",
+  "source": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

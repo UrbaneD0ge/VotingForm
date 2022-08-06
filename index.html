@@ -205,7 +205,7 @@
     </div>
   </footer>
   <script src="app.js" async defer></script>
-  <script>
+  <script type='module'>
     if ('serviceWorker' in navigator) {
       try {
         navigator.serviceWorker.register(URL('/sw.js'), import.meta.url), {
