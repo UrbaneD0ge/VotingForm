@@ -1,4 +1,5 @@
 const submit = document.getElementById("submit");
+const save = document.getElementById("save");
 const table = document.getElementById("table");
 let suffix = document.getElementById("itmType").value;
 // function to store the values of the form in local storage
@@ -213,9 +214,11 @@ window.addEventListener("beforeprint", ()=>{
     // change document title
     document.title = `Voting Report_NPU-${NPU}_${dateString}`;
     document.querySelector("#header").innerText = `VOTING REPORT: NPU-${NPU}  |  ${dateString}`;
-    // Hide instructions, print btn, and delete item buttons for printing
+    // Hide instructions, print btn, save btn, report link, and delete item buttons for printing
     document.getElementById("instructions").style.display = "none";
     document.getElementById("print").style.display = "none";
+    document.getElementById("report").style.display = "none";
+    document.getElementById("save").style.display = "none";
     document.querySelectorAll(".btn-close").forEach((btn)=>{
         btn.style.display = "none";
         document.getElementById("signature").style.display = "block";
@@ -235,6 +238,8 @@ window.addEventListener("afterprint", ()=>{
     storeForm();
     document.getElementById("instructions").style.display = "block";
     document.getElementById("print").style.display = "block";
+    document.getElementById("save").style.display = "block";
+    document.getElementById("report").style.display = "block";
     document.querySelectorAll(".btn-close").forEach((btn)=>{
         btn.style.display = "inline";
     });
