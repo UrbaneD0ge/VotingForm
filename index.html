@@ -208,9 +208,9 @@
   <script type='module'>
     if ('serviceWorker' in navigator) {
       try {
-        navigator.serviceWorker.register(new URL('/sw.js', import.meta.url),
+        navigator.serviceWorker.register(new URL('sw.js', import.meta.url),
           {
-            scope: '/VotingForm/',
+            scope: new URL('', import.meta.url).pathname,
             type: 'module'
           }).then(function (registration) {
             console.log('Service worker registered: ', registration);
