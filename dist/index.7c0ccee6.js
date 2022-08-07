@@ -1,3 +1,4 @@
+// const base = require('airtable').base('appotIP5Ss3YUKYYR');
 const submit = document.getElementById("submit");
 const save = document.getElementById("save");
 const table = document.getElementById("table");
@@ -80,11 +81,11 @@ function preFill() {
 submit.addEventListener("click", (e)=>{
     e.preventDefault();
     // // Add Item form
-    let itmType = document.querySelector("#itmType").selectedOptions[0].value;
+    let itmType1 = document.querySelector("#itmType").selectedOptions[0].value;
     let applName1 = document.querySelector("#applName").value.trim();
     let disposal = document.querySelector("#disposal").value || "";
     let comments = document.querySelector("#conditions").value.trim() || "";
-    if (itmType === "Type" || applName1 === "") return;
+    if (itmType1 === "Type" || applName1 === "") return;
     // create table row
     let row = document.createElement("tr");
     // create table cells
@@ -94,7 +95,7 @@ submit.addEventListener("click", (e)=>{
     let disposalCell = document.createElement("td");
     let commentsCell = document.createElement("td");
     // add text to cells
-    itmTypeCell.innerText = itmType;
+    itmTypeCell.innerText = itmType1;
     itmTypeCell.prepend(deleteButton);
     deleteButton.setAttribute("type", "button");
     deleteButton.setAttribute("class", "btn-close");
@@ -244,6 +245,36 @@ window.addEventListener("afterprint", ()=>{
         btn.style.display = "inline";
     });
     document.getElementById("signature").style.display = "none";
+});
+// on save button click, save form
+document.querySelector("#save").addEventListener("click", ()=>{
+    // get form data
+    let formData = [
+        {
+            "fields": {
+                "Title": document.getElementById("NPU").value + "_" + document.getElementById("date").value,
+                "Type": itmType,
+                "ApplName": document.getElementById("applName").value,
+                "Disposition": [
+                    "Approved"
+                ],
+                "comments": document.querySelectorAll(".comments").forEach((cell)=>cell.textContent)
+            }
+        }
+    ];
+    // send form data to Airtable
+    fetch("https://api.airtable.com/v0/appotIP5Ss3YUKYYR/Table%201", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer keyDFa7RNG5otUO3C"
+        },
+        body: JSON.stringify(formData)
+    }).then((response)=>{
+        console.log(response);
+    }).catch((error)=>{
+        console.log(error);
+    });
 });
 
 //# sourceMappingURL=index.7c0ccee6.js.map
