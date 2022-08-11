@@ -279,6 +279,7 @@ window.addEventListener('beforeprint', () => {
 window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
   storeForm();
+  document.getElementById('report').style.display = 'block';
   document.getElementById('instructions').style.display = 'block';
   document.getElementById('print').style.display = 'block';
   document.querySelectorAll('.btn-close').forEach(btn => {
