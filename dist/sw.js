@@ -590,6 +590,6 @@ var URLS = [
     `${GHPATH}/manifest/manifest.webmanifest`, 
 ];
 
-},{}]},["3V2MG","7rhpU"], "7rhpU", "parcelRequire94c2")
+},{}]},["3V2MG","7rhpU"], "7rhpU", "parcelRequire3c3c")
 
 //# sourceMappingURL=sw.js.map
