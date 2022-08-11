@@ -257,9 +257,10 @@ window.addEventListener('beforeprint', () => {
   // Hide instructions, print btn, and delete item buttons for printing
   document.getElementById('instructions').style.display = 'none';
   document.getElementById('print').style.display = 'none';
+  document.getElementById('report').style.display = 'none';
+  document.getElementById('signature').style.display = 'block';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'none';
-    document.getElementById('signature').style.display = 'block';
   });
   // if comment cells are empty, remove them
   document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
