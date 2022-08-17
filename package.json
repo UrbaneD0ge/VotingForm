@@ -2,10 +2,11 @@
   "name": "votingform",
   "version": "1.0.0",
   "description": "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)",
-  "main": "app.js",
   "source": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx parcel index.html",
+    "build": "npx parcel build index.html",
+    "start": "npx parcel index.html"
   },
   "repository": {
     "type": "git",

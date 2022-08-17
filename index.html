@@ -204,21 +204,22 @@
           href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a></p>
     </div>
   </footer>
-  <script src="app.js" async defer></script>
-  <script type='module'>
-    if ('serviceWorker' in navigator) {
-      try {
-        navigator.serviceWorker.register(new URL('/sw.js', import.meta.url),
-          {
-            scope: '/VotingForm/',
-            type: 'module'
-          }).then(function (registration) {
-            console.log('Service worker registered: ', registration);
-          });
-      } catch (error) {
-        console.log('Service Worker Registration Failed: ', error);
-      }
-    }
+  <script type="module" src="app.js" async defer></script>
+  <script type="module" src="./node_modules/airtable/build/airtable.browser.js"></script>
+  <!-- require build/app.js -->
+  if ('serviceWorker' in navigator) {
+  try {
+  navigator.serviceWorker.register(new URL('/sw.js', import.meta.url),
+  {
+  scope: '/VotingForm/',
+  type: 'module'
+  }).then(function (registration) {
+  console.log('Service worker registered: ', registration);
+  });
+  } catch (error) {
+  console.log('Service Worker Registration Failed: ', error);
+  }
+  }
 
   </script>
 </body>
