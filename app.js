@@ -230,13 +230,11 @@ document.querySelector('#print').addEventListener('click', () => {
   window.print();
 });
 
-// // when dispCell selection changes, remove that dispCell highlight
-// document.querySelectorAll('.disp').addEventListener('change', (e) => {
-//   if (e.target.classList.contains('disp')) {
-//     e.target.classList.remove('highlight');
-//   }
-// }
-// );
+// expand pNotes textarea on to fit text
+document.querySelector('#pNotes').addEventListener('input', (e) => {
+  e.target.style.height = 'auto';
+  e.target.style.height = e.target.scrollHeight + 2 + 'px';
+});
 
 // get date from datepicker
 let field = document.querySelector('#date');
