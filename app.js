@@ -257,6 +257,7 @@ window.addEventListener('beforeprint', () => {
   document.getElementById('print').style.display = 'none';
   document.getElementById('report').style.display = 'none';
   document.getElementById('signature').style.display = 'block';
+  document.getElementById('demo').style.display = 'none';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'none';
   });
