@@ -176,7 +176,7 @@ function removeDemo() {
 document.querySelector('#table').addEventListener('click', (e) => {
   if (e.target.classList.contains('disp')) {
     // e.target.setAttribute('contenteditable', 'false');
-    e.target.innerHTML = '<select><option value="Approval">Approval</option><option value="Approval w/C">Approval w/C</option><option value="Denial">Denial</option><option value="Defer">Defer</option><option value="Abstain">Abstain</option><option value="R&C">Review/Comment</option></select>';
+    e.target.innerHTML = '<select><option value="Approval">Approval</option><option value="Approval w/C">Approval w/C</option><option value="Denial">Denial</option><option value="Defer">Defer</option><option value="Abstain">Abstain</option><option value="R&C">Review & Comment</option></select>';
     e.target.firstChild.focus();
   }
   // on blur, change selected value to td text
