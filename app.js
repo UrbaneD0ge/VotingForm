@@ -68,11 +68,12 @@ function preFill() {
     case 'SD':
       applName.value = 'SD-22-';
       applName.setAttribute('placeholder', 'SD-')
+      disposal.value = 'R&C'
       break;
     case 'LOR':
       applName.value = 'LOR-22-';
       applName.setAttribute('placeholder', 'LOR-')
-      // applName.setAttribute('type', 'number');
+      disposal.value = 'R&C'
       break;
     case 'N/A':
       applName.value = '';
