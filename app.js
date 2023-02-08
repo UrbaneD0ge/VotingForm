@@ -94,7 +94,7 @@ submit.addEventListener('click', (e) => {
 
 
   if (itmType === 'Type' || applName === '') {
-    ;
+    alert('Please enter an item type and applicant name');
     return;
   }
 
@@ -225,6 +225,8 @@ document.querySelector('#print').addEventListener('click', () => {
     if (dispCell[i].textContent === 'PENDING') {
       dispCell[i].classList.add('highlight');
       return;
+    } else {
+      dispCell[i].classList.remove('highlight');
     }
   }
   // if no dispCell is "PENDING", print page

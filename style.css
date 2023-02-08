@@ -67,6 +67,9 @@ table {
 
 tbody:nth-child(odd) {
   background-color: lightgrey;
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+  print-color-adjust: exact !important;
 }
 
 /* thead > tr {
@@ -206,6 +209,15 @@ and (max-width : 425px) {
   #newItem {
     visibility: hidden;
     display: none;
+  }
+  #signature {
+  -webkit-print-color-adjust: exact !important;
+  color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  }
+  body {
+    margin-left: .75in;
+    margin-right: .75in;
   }
 }
 
