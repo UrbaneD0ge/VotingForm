@@ -68,7 +68,7 @@ table {
 tbody:nth-child(odd) {
   background-color: lightgrey;
   -webkit-print-color-adjust: exact !important;
-  color-adjust: exact !important;
+  /* color-adjust: exact !important; */
   print-color-adjust: exact !important;
 }
 
@@ -213,7 +213,7 @@ and (max-width : 425px) {
   }
   #signature {
   -webkit-print-color-adjust: exact !important;
-  color-adjust: exact !important;
+  /* color-adjust: exact !important; */
   print-color-adjust: exact !important;
   }
   body {
