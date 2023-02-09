@@ -216,8 +216,6 @@
           {
             scope: new URL('', import.meta.url).pathname,
             type: 'module'
-          }).then(function (registration) {
-            console.log('Service worker registered: ', registration);
           });
       } catch (error) {
         console.log('Service Worker Registration Failed: ', error);

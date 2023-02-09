@@ -110,7 +110,7 @@ submit.addEventListener('click', (e) => {
   itmTypeCell.innerText = itmType;
   itmTypeCell.prepend(deleteButton);
   deleteButton.setAttribute('type', 'button');
-  deleteButton.setAttribute('class', 'btn-close');
+  deleteButton.setAttribute('class', 'btn-close my-1');
   applNameCell.textContent = applName;
   applNameCell.setAttribute('contenteditable', 'true');
   applNameCell.classList.add('applName');
@@ -244,8 +244,8 @@ let field = document.querySelector('#date');
 
 // listen for print event
 window.addEventListener('beforeprint', () => {
-  NPU = document.getElementById('NPU').value;
-
+  let NPU = document.getElementById('NPU').value;
+  let notes = document.getElementById('pNotes').value;
   // Get the date
   let date = new Date(`${field.value}T00:00:00`);
   // Format date as MM-DD-YYYY
@@ -273,8 +273,9 @@ window.addEventListener('beforeprint', () => {
   // remove all highlight classes
   document.querySelectorAll('.highlight').forEach(cell => {
     cell.classList.remove('highlight');
-  }
-  );
+  });
+  // change pNotes textarea to <h5> element
+  document.querySelector('#pNotes').outerHTML = `<h5 id="pNotes">${notes}</h5>`;
 });
 
 // reset title after print
@@ -288,4 +289,6 @@ window.addEventListener('afterprint', () => {
     btn.style.display = 'inline';
   });
   document.getElementById('signature').style.display = 'none';
+  let notes = document.getElementById('pNotes').textContent;
+  document.querySelector('#pNotes').outerHTML = `<textarea id="pNotes" class="form-control" placeholder="Enter any notes here...">${notes}</textarea>`;
 });

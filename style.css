@@ -162,7 +162,8 @@ ol {
 
 #pNotes {
   width: 100%;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
+  white-space: pre-wrap;
 }
 
 #print {
@@ -218,6 +219,8 @@ and (max-width : 425px) {
   body {
     margin-left: .75in;
     margin-right: .75in;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
   }
 }
 
