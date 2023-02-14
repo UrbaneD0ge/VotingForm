@@ -1,6 +1,6 @@
 {
   "name": "votingform",
-  "version": "1.0.0",
+  "version": "1.4.1",
   "description": "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)",
   "main": "dist/app.js",
   "source": "app.js",
