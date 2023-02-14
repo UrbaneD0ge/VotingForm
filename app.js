@@ -245,7 +245,7 @@ let field = document.querySelector('#date');
 // listen for print event
 window.addEventListener('beforeprint', () => {
   let NPU = document.getElementById('NPU').value;
-  let notes = document.getElementById('pNotes').value;
+  let notes = document.getElementById('pNotes').value.trim();
   // Get the date
   let date = new Date(`${field.value}T00:00:00`);
   // Format date as MM-DD-YYYY

@@ -65,6 +65,10 @@ table {
   width: 100%;
 }
 
+tbody {
+  break-inside: avoid;
+}
+
 tbody:nth-child(odd) {
   background-color: lightgrey;
   -webkit-print-color-adjust: exact !important;
@@ -164,10 +168,15 @@ ol {
   width: 100%;
   /* background-color: whitesmoke; */
   white-space: pre-wrap;
+  font-size: 1.2rem;
 }
 
 #print {
   border-radius: 5px;
+}
+
+#signature {
+  break-inside: avoid;
 }
 
 #signature input {
