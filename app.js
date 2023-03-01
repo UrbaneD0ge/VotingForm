@@ -46,32 +46,32 @@ function preFill() {
       applName.value = ('');
       break;
     case 'ZRB':
-      applName.value = 'Z-22-';
+      applName.value = 'Z-2';
       applName.setAttribute('placeholder', 'Z-');
       break;
     case 'SUP':
-      applName.value = 'U-22-';
+      applName.value = 'U-2';
       applName.setAttribute('placeholder', 'U-');
       break;
     case 'BZA':
-      applName.value = 'V-22-';
+      applName.value = 'V-2';
       applName.setAttribute('placeholder', 'V-');
       break;
     case 'Text Amendment':
-      applName.value = 'Z-22-';
+      applName.value = 'Z-2';
       applName.setAttribute('placeholder', 'Z-');
       break;
     case 'CDP':
-      applName.value = 'CDP-22-';
+      applName.value = 'CDP-2';
       applName.setAttribute('placeholder', 'CDP-');
       break;
     case 'SD':
-      applName.value = 'SD-22-';
+      applName.value = 'SD-2';
       applName.setAttribute('placeholder', 'SD-')
       disposal.value = 'R&C'
       break;
     case 'LOR':
-      applName.value = 'LOR-22-';
+      applName.value = 'LOR-2';
       applName.setAttribute('placeholder', 'LOR-')
       disposal.value = 'R&C'
       break;
@@ -91,7 +91,6 @@ submit.addEventListener('click', (e) => {
   let applName = document.querySelector('#applName').value.trim();
   let disposal = document.querySelector('#disposal').value || '';
   let comments = document.querySelector('#conditions').value.trim() || '';
-
 
   if (itmType === 'Type' || applName === '') {
     alert('Please enter an item type and applicant name');
@@ -150,6 +149,7 @@ submit.addEventListener('click', (e) => {
   console.log('new row added');
   // clear inputs
   document.querySelector('#addItem').reset();
+  document.getElementById('applName').setAttribute('placeholder', 'Application number or name');
   removeDemo();
 }
 );
@@ -205,8 +205,7 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
     // append row to tbody
     e.target.parentElement.parentElement.appendChild(commentsRow);
   }
-}
-);
+});
 
 // Warn before leaving page
 window.onbeforeunload = function (e) {
@@ -214,24 +213,7 @@ window.onbeforeunload = function (e) {
 };
 
 // set datepicker to today
-today = document.querySelector('#date').valueAsDate = new Date();
-// date = today.toLocaleDateString().split('/').join('-');
-
-// on print button click, print page
-document.querySelector('#print').addEventListener('click', () => {
-  // if any dispCell is "PENDING", cancel print and highlight cell
-  let dispCell = document.querySelectorAll('.disp');
-  for (let i = 0; i < dispCell.length; i++) {
-    if (dispCell[i].textContent === 'PENDING') {
-      dispCell[i].classList.add('highlight');
-      return;
-    } else {
-      dispCell[i].classList.remove('highlight');
-    }
-  }
-  // if no dispCell is "PENDING", print page
-  window.print();
-});
+// today = document.querySelector('#date').valueAsDate = new Date();
 
 // expand pNotes textarea on to fit text
 document.querySelector('#pNotes').addEventListener('input', (e) => {
@@ -246,21 +228,28 @@ let field = document.querySelector('#date');
 window.addEventListener('beforeprint', () => {
   let NPU = document.getElementById('NPU').value;
   let notes = document.getElementById('pNotes').value.trim();
+
   // Get the date
   let date = new Date(`${field.value}T00:00:00`);
   // Format date as MM-DD-YYYY
   let dateString = `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-  console.log(dateString);
+  // console.log(dateString);
 
   // change document title
   document.title = `Voting Report_NPU-${NPU}_${dateString}`
   document.querySelector('#header').innerText = `VOTING REPORT: NPU-${NPU}  |  ${dateString}`;
+  // change pNotes textarea to <h5> element
+  document.querySelector('#pNotes').outerHTML = `<h5 id="pNotes">${notes}</h5>`;
   // Hide instructions, print btn, and delete item buttons for printing
   document.getElementById('instructions').style.display = 'none';
   document.getElementById('print').style.display = 'none';
   document.getElementById('report').style.display = 'none';
   document.getElementById('signature').style.display = 'block';
-  document.getElementById('demo').style.display = 'none';
+  if (document.querySelector('#demo') === null) {
+    return;
+  } else {
+    document.getElementById('demo').style.display = 'none';
+  }
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'none';
   });
@@ -274,8 +263,27 @@ window.addEventListener('beforeprint', () => {
   document.querySelectorAll('.highlight').forEach(cell => {
     cell.classList.remove('highlight');
   });
-  // change pNotes textarea to <h5> element
-  document.querySelector('#pNotes').outerHTML = `<h5 id="pNotes">${notes}</h5>`;
+});
+
+// on print button click, print page
+document.querySelector('#print').addEventListener('click', () => {
+  // if any dispCell is "PENDING", cancel print and highlight cell
+  let dispCell = document.querySelectorAll('.disp');
+  for (let i = 0; i < dispCell.length; i++) {
+    if (dispCell[i].textContent === 'PENDING') {
+      dispCell[i].classList.add('highlight');
+      return;
+    } else {
+      dispCell[i].classList.remove('highlight');
+    }
+  }
+  // if datepicker is empty, return
+  if (field.value === '') {
+    alert('Please select a date');
+    return;
+  }
+  // if no dispCell is "PENDING", print page
+  window.print();
 });
 
 // reset title after print
@@ -285,6 +293,7 @@ window.addEventListener('afterprint', () => {
   document.getElementById('report').style.display = 'block';
   document.getElementById('instructions').style.display = 'block';
   document.getElementById('print').style.display = 'block';
+  document.getElementById('report').style.display = 'block';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'inline';
   });

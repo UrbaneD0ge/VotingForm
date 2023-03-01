@@ -36,6 +36,10 @@ select, input, button, textarea {
   background-color: lightgray;
 }
 
+.noBreak {
+  break-inside: avoid;
+}
+
 .pHead {
   margin: 3px;
 }
