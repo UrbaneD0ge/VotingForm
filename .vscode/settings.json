@@ -4,5 +4,10 @@
     "colspan",
     "contenteditable",
     "MOSE"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#481063",
+    "titleBar.activeBackground": "#64178B",
+    "titleBar.activeForeground": "#FEFCFF"
+  }
 }
