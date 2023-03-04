@@ -35,6 +35,8 @@ window.onload = function () {
 // on itemType change, preFill the applName
 document.querySelector('#itmType').addEventListener('change', preFill);
 
+const autoFill = document.querySelector('#autofill');
+
 function preFill() {
   switch (document.querySelector('#itmType').value) {
     case 'MOSE':
@@ -46,32 +48,32 @@ function preFill() {
       applName.value = ('');
       break;
     case 'ZRB':
-      applName.value = 'Z-2';
+      if (autoFill.checked) { applName.value = ('Z-2'); }
       applName.setAttribute('placeholder', 'Z-');
       break;
     case 'SUP':
-      applName.value = 'U-2';
+      if (autoFill.checked) { applName.value = 'U-2'; }
       applName.setAttribute('placeholder', 'U-');
       break;
     case 'BZA':
-      applName.value = 'V-2';
+      if (autoFill.checked) { applName.value = 'V-2'; }
       applName.setAttribute('placeholder', 'V-');
       break;
     case 'Text Amendment':
-      applName.value = 'Z-2';
+      if (autoFill.checked) { applName.value = 'Z-2'; }
       applName.setAttribute('placeholder', 'Z-');
       break;
     case 'CDP':
-      applName.value = 'CDP-2';
+      if (autoFill.checked) { applName.value = 'CDP-2'; }
       applName.setAttribute('placeholder', 'CDP-');
       break;
     case 'SD':
-      applName.value = 'SD-2';
+      if (autoFill.checked) { applName.value = 'SD-2'; }
       applName.setAttribute('placeholder', 'SD-')
       disposal.value = 'R&C'
       break;
     case 'LOR':
-      applName.value = 'LOR-2';
+      if (autoFill.checked) { applName.value = 'LOR-2'; }
       applName.setAttribute('placeholder', 'LOR-')
       disposal.value = 'R&C'
       break;

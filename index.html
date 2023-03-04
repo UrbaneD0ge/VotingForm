@@ -83,9 +83,14 @@
         <br>
         <label class='pHead' for="planner">Planner:</label>
         <input class='pHead' type="text" name="planner" id="planner">
-        <!-- <br>
-          <label class='pHead' for="attend">Attendance:</label>
-          <input class='pHead' type="number" name="attend" id="attend" min="0" max="404" step="5"> -->
+        <br>
+        <div id='fillToggle'>
+          <label class='pHead' for="autofill">Autofill application numbers:</label>
+          <label class="switch">
+            <input id="autofill" type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
       </div>
     </div>
   </form>
@@ -207,7 +212,7 @@
     <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'
         target='_blank'>Department of City
         Planning</a>, City of Atlanta | Send questions and bug reports to <a
-        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.4.2</p>
+        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.5.0</p>
   </footer>
   <script src="app.js" async defer></script>
   <script type='module'>
