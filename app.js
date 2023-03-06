@@ -248,24 +248,19 @@ window.addEventListener('beforeprint', () => {
   document.getElementById('print').style.display = 'none';
   document.getElementById('report').style.display = 'none';
   document.getElementById('signature').style.display = 'block';
-  if (document.querySelector('#demo') === null) {
-    return;
-  } else {
-    document.getElementById('demo').style.display = 'none';
-  }
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'none';
   });
   // if comment cells are empty, remove them
   document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
+    console.log('remove empty comments')
     if (cell.textContent === '') {
       cell.parentElement.remove();
     }
   });
-  // remove all highlight classes
-  // document.querySelectorAll('.highlight').forEach(cell => {
-  //   cell.classList.remove('highlight');
-  // });
+  if (document.querySelector('#demo') === !null) {
+    document.getElementById('demo').style.display = 'none';
+  };
 });
 
 // on print button click, print page
@@ -276,7 +271,6 @@ document.querySelector('#print').addEventListener('click', () => {
     alert('Please select a date');
     return;
   }
-
   // if any dispCell is "PENDING", cancel print and highlight cell
   dispCell.forEach(cell => {
     if (cell.textContent === 'PENDING') {
