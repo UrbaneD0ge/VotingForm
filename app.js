@@ -1,6 +1,7 @@
 const submit = document.getElementById('submit');
 const table = document.getElementById('table');
 let suffix = document.getElementById('itmType').value;
+let dialog = document.getElementById('dialog');
 
 // function to store the values of the form in local storage
 function storeForm() {
@@ -95,7 +96,9 @@ submit.addEventListener('click', (e) => {
   let comments = document.querySelector('#conditions').value.trim() || '';
 
   if (itmType === 'Type' || applName === '') {
-    alert('Please enter an item type and applicant name');
+    // alert('Please enter an item type and applicant name');
+    dialog.showModal();
+    dialog.innerText = 'Please enter an item type and applicant name';
     return;
   }
 
