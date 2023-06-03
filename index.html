@@ -39,8 +39,11 @@
 </header>
 
 <body class='container'>
-  <dialog id='dialog'>
+  <!-- modal -->
+  <dialog class='text-center' id='dialog' style='border-radius: 10px;'>
     <span id='message'></span>
+    <br>
+    <button class='btn btn-outline' onclick=dialog.close()>OK</button>
   </dialog>
   <form id='pageInfo'>
     <div class='row'>
@@ -215,7 +218,7 @@
     <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'
         target='_blank'>Department of City
         Planning</a>, City of Atlanta | Send questions and bug reports to <a
-        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.5.1</p>
+        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.5.2</p>
   </footer>
   <script src="app.js" async defer></script>
   <script type='module'>
