@@ -1,6 +1,8 @@
 const submit = document.getElementById('submit');
 const table = document.getElementById('table');
 let suffix = document.getElementById('itmType').value;
+let dialog = document.getElementById('dialog');
+let message = document.getElementById('message');
 
 // function to store the values of the form in local storage
 function storeForm() {
@@ -95,7 +97,9 @@ submit.addEventListener('click', (e) => {
   let comments = document.querySelector('#conditions').value.trim() || '';
 
   if (itmType === 'Type' || applName === '') {
-    alert('Please enter an item type and applicant name');
+    // alert('Please enter an item type and applicant name');
+    message.innerText = 'Please enter an item type and applicant name';
+    dialog.showModal();
     return;
   }
 
@@ -268,7 +272,9 @@ document.querySelector('#print').addEventListener('click', () => {
   let dispCell = document.querySelectorAll('.disp');
   // if datepicker is empty, return
   if (field.value === '') {
-    alert('Please select a date');
+    // alert('Please select a date');
+    message.innerText = 'Please select a date';
+    dialog.showModal();
     return;
   }
   // if any dispCell is "PENDING", cancel print and highlight cell
@@ -282,7 +288,9 @@ document.querySelector('#print').addEventListener('click', () => {
   });
   // check if any disp cell contains "PENDING", if so, cancel printing
   if (document.querySelectorAll('.highlight').length > 0) {
-    alert('Please select a disposition for all items');
+    // alert('Please select a disposition for all items');
+    message.innerText = 'Please select a disposition for all items';
+    dialog.showModal();
     return;
   } else {
     window.print();
