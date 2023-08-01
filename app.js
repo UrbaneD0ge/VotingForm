@@ -73,7 +73,7 @@ function preFill() {
             template: "Z-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       break;
     case 'SUP':
       applName.setAttribute('placeholder', 'U-');
@@ -86,7 +86,7 @@ function preFill() {
             template: "U-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       break;
     case 'BZA':
       applName.setAttribute('placeholder', 'V-');
@@ -99,7 +99,7 @@ function preFill() {
             template: "V-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       break;
     case 'Text Amendment':
       applName.setAttribute('placeholder', 'Z-');
@@ -112,7 +112,7 @@ function preFill() {
             template: "Z-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       break;
     case 'CDP':
       applName.setAttribute('placeholder', 'CDP-');
@@ -125,7 +125,7 @@ function preFill() {
             template: "CDP-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       break;
     case 'SD':
       applName.setAttribute('placeholder', 'SD-')
@@ -138,7 +138,7 @@ function preFill() {
             template: "SD-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       disposal.value = 'R&C'
       break;
     case 'LOR':
@@ -152,7 +152,7 @@ function preFill() {
             template: "LOR-xx-xxx",
           });
         };
-      };
+      } else { applName.value = ''; };
       disposal.value = 'R&C'
       break;
     case 'N/A':
@@ -410,33 +410,37 @@ function patternMatch({
   template
 }) {
   try {
+    if (autoFill.checked) {
 
-    let j = 0;
-    let plaintext = "";
-    let countj = 0;
-    while (j < template.length) {
+      let j = 0;
+      let plaintext = "";
+      let countj = 0;
+      while (j < template.length) {
 
-      if (countj > input.length - 1) {
-        template = template.substring(0, j);
-        break;
-      }
+        if (countj > input.length - 1) {
+          template = template.substring(0, j);
+          break;
+        }
 
-      if (template[j] == input[j]) {
+        if (template[j] == input[j]) {
+          j++;
+          countj++;
+          continue;
+        }
+
+        if (template[j] == "x") {
+          template = template.substring(0, j) + input[countj] + template.substring(j + 1);
+          plaintext = plaintext + input[countj];
+          countj++;
+        }
         j++;
-        countj++;
-        continue;
       }
 
-      if (template[j] == "x") {
-        template = template.substring(0, j) + input[countj] + template.substring(j + 1);
-        plaintext = plaintext + input[countj];
-        countj++;
-      }
-      j++;
+      return template
     }
-
-    return template
-
+    else {
+      return input;
+    }
   } catch {
     return ""
   }
