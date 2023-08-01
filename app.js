@@ -154,7 +154,7 @@ submit.addEventListener('click', (e) => {
   // clear inputs
   document.querySelector('#addItem').reset();
   document.getElementById('applName').setAttribute('placeholder', 'Application number or name');
-  removeDemo();
+  // removeDemo();
 }
 );
 
@@ -169,13 +169,13 @@ document.querySelector('#table').addEventListener('click', (e) => {
 );
 
 // remove #demo if it exists
-function removeDemo() {
-  if (document.querySelector('#demo') === null) {
-    return;
-  } else {
-    document.querySelector('#demo').remove();
-  }
-};
+// function removeDemo() {
+//   if (document.querySelector('#demo') === null) {
+//     return;
+//   } else {
+//     document.querySelector('#demo').remove();
+//   }
+// };
 
 // on disposalCell click, show select box
 document.querySelector('#table').addEventListener('click', (e) => {
@@ -260,9 +260,9 @@ window.addEventListener('beforeprint', () => {
       cell.parentElement.remove();
     }
   });
-  if (document.querySelector('#demo') === !null) {
-    document.getElementById('demo').style.display = 'none';
-  };
+  // if (document.querySelector('#demo') === !null) {
+  //   document.getElementById('demo').style.display = 'none';
+  // };
 });
 
 // on print button click, print page
