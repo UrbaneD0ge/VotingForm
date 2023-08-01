@@ -10,12 +10,19 @@ function storeForm() {
   let chair = document.querySelector('#chair').value.trim() || '';
   let loc = document.querySelector('#location').value.trim() || '';
   let planner = document.querySelector('#planner').value.trim() || '';
+
+  // save the table contents as a JSON object
+  let items = document.getElementsByTagName('tbody')[i].innerText;
+
+  // [TODO: add logic to index each item and save to the JSON object]
+
   // save inputs to object
   let data = {
     NPU: NPU,
     chair: chair,
     loc: loc,
     planner: planner,
+    [items]: items
   };
   // save data to local storage
   localStorage.setItem('data', JSON.stringify(data));
@@ -32,6 +39,11 @@ window.onload = function () {
     document.querySelector('#planner').value = data.planner;
   };
 };
+
+document.getElementById('clear').addEventListener('click', function () {
+  localStorage.clear();
+  location.reload();
+});
 
 // on itemType change, preFill the applName
 document.querySelector('#itmType').addEventListener('change', preFill);
@@ -350,7 +362,6 @@ window.addEventListener('beforeprint', () => {
   });
   // if comment cells are empty, remove them
   document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
-    console.log('remove empty comments')
     if (cell.textContent === '') {
       cell.parentElement.remove();
     }

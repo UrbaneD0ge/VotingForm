@@ -153,14 +153,6 @@ ol {
   min-width: 1.5in !important;
 }
 
-#demo {
-  color: darkgray;
-}
-
-#demo td {
-  border-color: lightgray !important;
-}
-
 #newItem {
   border: 1px solid black;
   border-radius: 5px;
@@ -187,9 +179,9 @@ ol {
   width: 100%;
 }
 
-#submit {
+#submit, #clear {
   grid-area: 3 / 3 / 4 / 4;
-  border-radius: 5px;;
+  border-radius: 5px;
 }
 
 @media only screen
