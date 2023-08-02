@@ -12,9 +12,8 @@ function storeForm() {
   let planner = document.querySelector('#planner').value.trim() || '';
 
   // save the table contents as a JSON object
-  let items = document.getElementsByTagName('tbody')[i].innerText;
-
-  // [TODO: add logic to index each item and save to the JSON object]
+  let items = document.getElementById('table').outerHTML.replace(/(<thead>[\W\w]*<\/thead>)(\n)/mgi, '');
+  console.log(items);
 
   // save inputs to object
   let data = {
@@ -22,26 +21,34 @@ function storeForm() {
     chair: chair,
     loc: loc,
     planner: planner,
-    [items]: items
   };
+
   // save data to local storage
   localStorage.setItem('data', JSON.stringify(data));
-  console.log(data);
+  localStorage.setItem('items', JSON.stringify(items));
+  console.log(data, items);
 }
 
 // on load, check if there is data in local storage and if so, pre-fill the form
 window.onload = function () {
   if (localStorage.getItem('data')) {
+    console.log(localStorage.getItem('data'));
     let data = JSON.parse(localStorage.getItem('data'));
     document.querySelector('#NPU').value = data.NPU;
     document.querySelector('#chair').value = data.chair;
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
   };
+  if (localStorage.getItem('items')) {
+    let items = localStorage.getItem('items');
+    document.querySelector('#itemTarget').insertAdjacentHTML('afterend', JSON.parse(items));
+  };
 };
 
 document.getElementById('clear').addEventListener('click', function () {
-  localStorage.clear();
+  // localStorage.clear();
+  // Delete only the items
+  localStorage.removeItem('items');
   location.reload();
 });
 
@@ -262,8 +269,7 @@ submit.addEventListener('click', (e) => {
   document.querySelector('#addItem').reset();
   document.getElementById('applName').setAttribute('placeholder', 'Application number or name');
   // removeDemo();
-}
-);
+});
 
 // on button click, remove that tbody
 document.querySelector('#table').addEventListener('click', (e) => {
@@ -272,17 +278,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
       e.target.parentElement.parentElement.parentElement.remove();
     } else { return; }
   }
-}
-);
-
-// remove #demo if it exists
-// function removeDemo() {
-//   if (document.querySelector('#demo') === null) {
-//     return;
-//   } else {
-//     document.querySelector('#demo').remove();
-//   }
-// };
+});
 
 // on disposalCell click, show select box
 document.querySelector('#table').addEventListener('click', (e) => {
@@ -294,7 +290,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
   // on blur, change selected value to td text
   e.target.addEventListener('focusout', (e) => {
     if (e.target.tagName === 'SELECT') {
-      e.target.parentElement.classList.remove('highlight');
+      e.target.parentElement?.classList.remove('highlight');
       e.target.parentElement.innerText = e.target.value;
     }
   });
