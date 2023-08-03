@@ -12,7 +12,7 @@ function storeForm() {
   let planner = document.querySelector('#planner').value.trim() || '';
 
   // save the table contents as a JSON object
-  let items = document.getElementById('table').outerHTML.replace(/(<thead>[\W\w]*<\/thead>)(\n)/mgi, '');
+  let items = document.getElementById('table').outerHTML.replace(/( id="table">[\W\w]*(<\/thead>))(\n)/gim, '>');
   console.log(items);
 
   // save inputs to object
@@ -41,7 +41,10 @@ window.onload = function () {
   };
   if (localStorage.getItem('items')) {
     let items = localStorage.getItem('items');
-    document.querySelector('#itemTarget').insertAdjacentHTML('afterend', JSON.parse(items));
+    document.querySelector('#table').insertAdjacentHTML('beforeend', JSON.parse(items));
+    document.querySelectorAll('.btn-close').forEach(btn => {
+      btn.style.display = 'inline';
+    });
   };
 };
 
@@ -291,6 +294,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
   e.target.addEventListener('focusout', (e) => {
     if (e.target.tagName === 'SELECT') {
       e.target.parentElement?.classList.remove('highlight');
+      // I don't know why this throws an error every time, but it works!
       e.target.parentElement.innerText = e.target.value;
     }
   });
@@ -362,29 +366,52 @@ window.addEventListener('beforeprint', () => {
       cell.parentElement.remove();
     }
   });
-  // if (document.querySelector('#demo') === !null) {
-  //   document.getElementById('demo').style.display = 'none';
-  // };
+  let dispCell = document.querySelectorAll('.disp');
+  // // if datepicker is empty, return
+  // if (field.value === '') {
+  //   message.innerText = 'Please select a date';
+  //   dialog.showModal();
+  //   return;
+  // }
+  // if any dispCell is "PENDING", cancel print and highlight cell
+  // dispCell.forEach(cell => {
+  //   if (cell.textContent === 'PENDING') {
+  //     cell.classList.add('highlight');
+  //     return;
+  //   } else {
+  //     cell.classList.remove('highlight');
+  //   }
+  // });
+  // check if any disp cell contains "PENDING", if so, cancel printing
+  if (document.querySelectorAll('.highlight').length > 0) {
+    message.innerText = 'Please select a disposition for all items';
+    dialog.showModal();
+    return;
+  } else {
+    window.print();
+  }
 });
 
 // on print button click, print page
 document.querySelector('#print').addEventListener('click', () => {
-  let dispCell = document.querySelectorAll('.disp');
-  // if datepicker is empty, return
+  // let dispCell = document.querySelectorAll('.disp');
+  // // if datepicker is empty, return
   if (field.value === '') {
-    message.innerText = 'Please select a date';
-    dialog.showModal();
+    // message.innerText = 'Please select a date';
+    // dialog.showModal();
+    // set focus to the datepicker
+    field.showPicker();
     return;
   }
-  // if any dispCell is "PENDING", cancel print and highlight cell
-  dispCell.forEach(cell => {
-    if (cell.textContent === 'PENDING') {
-      cell.classList.add('highlight');
-      return;
-    } else {
-      cell.classList.remove('highlight');
-    }
-  });
+  // // if any dispCell is "PENDING", cancel print and highlight cell
+  // dispCell.forEach(cell => {
+  //   if (cell.textContent === 'PENDING') {
+  //     cell.classList.add('highlight');
+  //     return;
+  //   } else {
+  //     cell.classList.remove('highlight');
+  //   }
+  // });
   // check if any disp cell contains "PENDING", if so, cancel printing
   if (document.querySelectorAll('.highlight').length > 0) {
     message.innerText = 'Please select a disposition for all items';
