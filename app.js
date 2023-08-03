@@ -366,35 +366,11 @@ window.addEventListener('beforeprint', () => {
       cell.parentElement.remove();
     }
   });
-  let dispCell = document.querySelectorAll('.disp');
-  // // if datepicker is empty, return
-  // if (field.value === '') {
-  //   message.innerText = 'Please select a date';
-  //   dialog.showModal();
-  //   return;
-  // }
-  // if any dispCell is "PENDING", cancel print and highlight cell
-  // dispCell.forEach(cell => {
-  //   if (cell.textContent === 'PENDING') {
-  //     cell.classList.add('highlight');
-  //     return;
-  //   } else {
-  //     cell.classList.remove('highlight');
-  //   }
-  // });
-  // check if any disp cell contains "PENDING", if so, cancel printing
-  if (document.querySelectorAll('.highlight').length > 0) {
-    message.innerText = 'Please select a disposition for all items';
-    dialog.showModal();
-    return;
-  } else {
-    window.print();
-  }
 });
 
 // on print button click, print page
 document.querySelector('#print').addEventListener('click', () => {
-  // let dispCell = document.querySelectorAll('.disp');
+  let dispCell = document.querySelectorAll('.disp');
   // // if datepicker is empty, return
   if (field.value === '') {
     // message.innerText = 'Please select a date';
@@ -403,15 +379,15 @@ document.querySelector('#print').addEventListener('click', () => {
     field.showPicker();
     return;
   }
-  // // if any dispCell is "PENDING", cancel print and highlight cell
-  // dispCell.forEach(cell => {
-  //   if (cell.textContent === 'PENDING') {
-  //     cell.classList.add('highlight');
-  //     return;
-  //   } else {
-  //     cell.classList.remove('highlight');
-  //   }
-  // });
+  // if any dispCell is "PENDING", cancel print and highlight cell
+  dispCell.forEach(cell => {
+    if (cell.textContent === 'PENDING') {
+      cell.classList.add('highlight');
+      return;
+    } else {
+      cell.classList.remove('highlight');
+    }
+  });
   // check if any disp cell contains "PENDING", if so, cancel printing
   if (document.querySelectorAll('.highlight').length > 0) {
     message.innerText = 'Please select a disposition for all items';
