@@ -13,7 +13,7 @@ function storeForm() {
 
   // save the table contents as a JSON object
   let items = document.getElementById('table').outerHTML.replace(/( id="table">[\W\w]*(<\/thead>))(\n)/gim, '>');
-  console.log(items);
+  // console.log(items);
 
   // save inputs to object
   let data = {
@@ -26,13 +26,13 @@ function storeForm() {
   // save data to local storage
   localStorage.setItem('data', JSON.stringify(data));
   localStorage.setItem('items', JSON.stringify(items));
-  console.log(data, items);
+  // console.log(data, items);
 }
 
 // on load, check if there is data in local storage and if so, pre-fill the form
 window.onload = function () {
   if (localStorage.getItem('data')) {
-    console.log(localStorage.getItem('data'));
+    // console.log(localStorage.getItem('data'));
     let data = JSON.parse(localStorage.getItem('data'));
     document.querySelector('#NPU').value = data.NPU;
     document.querySelector('#chair').value = data.chair;
