@@ -10,7 +10,8 @@ function storeForm() {
   let chair = document.querySelector('#chair').value.trim() || '';
   let loc = document.querySelector('#location').value.trim() || '';
   let planner = document.querySelector('#planner').value.trim() || '';
-
+  let fillToggle = document.querySelector('#autofill').checked;
+  let pNotes = document.querySelector('#pNotes').value.trim() || '';
   // save the table contents as a JSON object
   let items = document.getElementById('table').outerHTML.replace(/( id="table">[\W\w]*(<\/thead>))(\n)/gim, '>');
   // console.log(items);
@@ -21,12 +22,14 @@ function storeForm() {
     chair: chair,
     loc: loc,
     planner: planner,
+    fillToggle: fillToggle,
   };
 
   // save data to local storage
   localStorage.setItem('data', JSON.stringify(data));
   localStorage.setItem('items', JSON.stringify(items));
-  // console.log(data, items);
+  localStorage.setItem('pNotes', pNotes);
+  console.log(pNotes);
 }
 
 // on load, check if there is data in local storage and if so, pre-fill the form
@@ -46,12 +49,17 @@ window.onload = function () {
       btn.style.display = 'inline';
     });
   };
+  if (localStorage.getItem('pNotes')) {
+    let pNotes = localStorage.getItem('pNotes') || '';
+    document.querySelector('#pNotes').value = pNotes;
+  }
 };
 
 document.getElementById('clear').addEventListener('click', function () {
   // localStorage.clear();
   // Delete only the items
   localStorage.removeItem('items');
+  localStorage.removeItem('pNotes');
   location.reload();
 });
 
@@ -272,6 +280,7 @@ submit.addEventListener('click', (e) => {
   document.querySelector('#addItem').reset();
   document.getElementById('applName').setAttribute('placeholder', 'Application number or name');
   // removeDemo();
+  storeForm();
 });
 
 // on button click, remove that tbody
@@ -279,6 +288,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
   if (e.target.classList.contains('btn-close')) {
     if (confirm('Are you sure you want to delete this item?')) {
       e.target.parentElement.parentElement.parentElement.remove();
+      storeForm();
     } else { return; }
   }
 });
@@ -296,6 +306,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
       e.target.parentElement?.classList.remove('highlight');
       // I don't know why this throws an error every time, but it works!
       e.target.parentElement.innerText = e.target.value;
+      storeForm();
     }
   });
 });
@@ -316,13 +327,14 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
     commentsRow.appendChild(commentsCell);
     // append row to tbody
     e.target.parentElement.parentElement.appendChild(commentsRow);
+    storeForm();
   }
 });
 
 // Warn before leaving page
-window.onbeforeunload = function (e) {
-  return 'Form contents will be lost!';
-};
+// window.onbeforeunload = function (e) {
+//   return 'Unsaved form contents may be lost!';
+// };
 
 // set datepicker to today
 // today = document.querySelector('#date').valueAsDate = new Date();
@@ -331,6 +343,10 @@ window.onbeforeunload = function (e) {
 document.querySelector('#pNotes').addEventListener('input', (e) => {
   e.target.style.height = 'auto';
   e.target.style.height = e.target.scrollHeight + 2 + 'px';
+});
+
+document.querySelector('#pNotes').addEventListener('focusout', (e) => {
+  storeForm();
 });
 
 // get date from datepicker
@@ -401,7 +417,7 @@ document.querySelector('#print').addEventListener('click', () => {
 // reset title after print
 window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
-  storeForm();
+  // storeForm();
   document.getElementById('report').style.display = 'block';
   document.getElementById('instructions').style.display = 'block';
   document.getElementById('print').style.display = 'block';
