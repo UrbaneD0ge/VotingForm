@@ -71,6 +71,7 @@ table {
 
 tbody {
   break-inside: avoid;
+  position: relative;
 }
 
 tbody:nth-child(odd) {
@@ -85,12 +86,19 @@ tbody:nth-child(odd) {
   grid-template-columns: 2fr 3fr 2fr;
 } */
 
-tr :first-child {
+/* tr :first-child {
+
   text-align: left;
+} */
+
+.typeTD {
+  padding-left: 30px !important;
+  /* background-color: red; */
 }
 
 td > button {
-  margin-right: 2vw;
+  position: absolute;
+  left: 2px;
 }
 
 tbody > tr :nth-child(2) {

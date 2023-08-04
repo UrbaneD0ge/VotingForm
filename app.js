@@ -131,7 +131,7 @@ function preFill() {
         };
       } else { applName.value = ''; };
       break;
-    case 'Text Amendment':
+    case 'Text Am.':
       applName.setAttribute('placeholder', 'Z-');
       if (autoFill.checked) {
         applName.value = 'Z-2';
@@ -236,9 +236,10 @@ submit.addEventListener('click', (e) => {
   let commentsCell = document.createElement('td');
   // add text to cells
   itmTypeCell.innerText = itmType;
+  itmTypeCell.setAttribute('class', 'typeTD');
   itmTypeCell.prepend(deleteButton);
   deleteButton.setAttribute('type', 'button');
-  deleteButton.setAttribute('class', 'btn-close my-1');
+  deleteButton.setAttribute('class', 'btn-close');
   applNameCell.textContent = applName;
   applNameCell.setAttribute('contenteditable', 'true');
   applNameCell.classList.add('applName');
