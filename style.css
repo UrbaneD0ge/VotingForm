@@ -77,23 +77,11 @@ tbody {
 tbody:nth-child(odd) {
   background-color: lightgrey;
   -webkit-print-color-adjust: exact !important;
-  /* color-adjust: exact !important; */
   print-color-adjust: exact !important;
 }
 
-/* thead > tr {
-  display: grid;
-  grid-template-columns: 2fr 3fr 2fr;
-} */
-
-/* tr :first-child {
-
-  text-align: left;
-} */
-
 .typeTD {
   padding-left: 30px !important;
-  /* background-color: red; */
 }
 
 td > button {
@@ -102,7 +90,7 @@ td > button {
 }
 
 tbody > tr :nth-child(2) {
-  width: 50%;
+  width: 40%;
 }
 
 tr > td:nth-child(3) {
@@ -170,7 +158,6 @@ ol {
 
 #pNotes {
   width: 100%;
-  /* background-color: whitesmoke; */
   white-space: pre-wrap;
   font-size: 1.2rem;
 }
@@ -226,24 +213,27 @@ and (max-width : 425px) {
   }
   #signature {
   -webkit-print-color-adjust: exact !important;
-  /* color-adjust: exact !important; */
   print-color-adjust: exact !important;
   }
   body {
-    margin-left: .75in;
-    margin-right: .75in;
+    margin: 0.4 !important;
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
   }
   #fillToggle {
     display: none;
   }
+  .typeTD {
+    padding-left: 10px !important;
+  }
+  #clear {
+    display: none !important;
+  }
 }
 
 /* Autofill toggle switch */
   input:-webkit-any(autofill),
   input:-internal-autofill-selected,
-  /* input:-internal-autofill-blur, */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
