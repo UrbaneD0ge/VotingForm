@@ -14,7 +14,6 @@ function storeForm() {
   let pNotes = document.querySelector('#pNotes').value.trim() || '';
   // save the table contents as a JSON object
   let items = document.getElementById('table').outerHTML.replace(/( id="table">[\W\w]*(<\/thead>))(\n)/gim, '>');
-  // console.log(items);
 
   // save inputs to object
   let data = {
@@ -29,7 +28,6 @@ function storeForm() {
   localStorage.setItem('data', JSON.stringify(data));
   localStorage.setItem('items', JSON.stringify(items));
   localStorage.setItem('pNotes', pNotes);
-  console.log(pNotes);
 }
 
 // on load, check if there is data in local storage and if so, pre-fill the form
@@ -41,6 +39,7 @@ window.onload = function () {
     document.querySelector('#chair').value = data.chair;
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
+    document.querySelector('#autofill').checked = data.fillToggle;
   };
   if (localStorage.getItem('items')) {
     let items = localStorage.getItem('items');
@@ -56,6 +55,7 @@ window.onload = function () {
 };
 
 document.getElementById('clear').addEventListener('click', function () {
+  document.getElementById('date').setAttribute('disabled', 'disabled');
   // localStorage.clear();
   // Delete only the items
   localStorage.removeItem('items');
@@ -352,6 +352,13 @@ document.querySelector('#pNotes').addEventListener('focusout', (e) => {
   storeForm();
 });
 
+// listen for focusout, if on .comments, storeForm()
+document.querySelector('#table').addEventListener('focusout', (e) => {
+  if (e.target.classList.contains('comments')) {
+    storeForm();
+  }
+});
+
 // get date from datepicker
 let field = document.querySelector('#date');
 
@@ -420,7 +427,6 @@ document.querySelector('#print').addEventListener('click', () => {
 // reset title after print
 window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
-  // storeForm();
   document.getElementById('report').style.display = 'block';
   document.getElementById('instructions').style.display = 'block';
   document.getElementById('print').style.display = 'block';
@@ -479,14 +485,12 @@ function patternMatch({
 const draggables = document.querySelectorAll('.draggable');
 const container = document.getElementById('table');
 
-draggables.forEach(draggable => {
-  draggable.addEventListener('dragstart', () => {
-    draggable.classList.add('dragging');
-  });
+container.addEventListener('dragstart', (e) => {
+  e.target.classList.add('dragging');
+});
 
-  draggable.addEventListener('dragend', () => {
-    draggable.classList.remove('dragging');
-  });
+container.addEventListener('dragend', (e) => {
+  e.target.classList.remove('dragging');
 });
 
 container.addEventListener('dragover', e => {
@@ -513,4 +517,4 @@ function getDragAfterElement(container, y) {
       return closest
     }
   }, { offset: Number.NEGATIVE_INFINITY }).element
-}
+};
