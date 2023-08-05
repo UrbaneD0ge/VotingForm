@@ -76,7 +76,7 @@
           <option value="Y">Y</option>
           <option value="Z">Z</option>
         </select>
-        <button id='clear' class='m-1'>Clear Items</button>
+        <button id='clear' class='m-1' type='reset'>Clear Items</button>
         <br>
         <label class='pHead' for="chair">Chair:</label>
         <input class='pHead' type="text" name="chair" id="chair">
@@ -181,13 +181,17 @@
   <footer>
     <details open id='instructions'>
       <summary>Instructions:</summary>
+      <ul style='list-style-type: "✨";'>
+        <h5><b>NEW!</b></h5>
+        <li>When changes are made, agenda items and Planner's Notes are saved to your device until cleared.
+          To clear them, click 'Clear Items' at the top of the page. Stored items are editable just
+          like new ones!</li>
+        <li>When 'Autofill application numbers' is selected, applications with a defined naming convention will be
+          formatted automatically (no need to enter dashes). This preference is also saved to your device.</li>
+        <li>Instead of a pop-up telling you to enter a meeting date, the datepicker will present itself.</li>
+        <li>Items are now draggable! Grab items by their type cell and drag them into any order you'd like.</li>
+      </ul>
       <ul>
-        <li><b>NEW!</b> When changes are made, agenda items and Planner's Notes are saved to local storage and will
-          survive refresh. To clear them, click
-          "Clear Items" at the top of the page. Stored items are editable just like new ones.</li>
-        <li><b>NEW!</b> When 'Autofill application numbers' is selected, applications with a defined naming convention
-          will be
-          formatted automatically (no need to enter dashes).</li>
         <li>Fill page header info - this information is saved to your device for future use when you click print.</li>
         <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable, and
           select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
@@ -212,7 +216,7 @@
     <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'
         target='_blank'>Department of City
         Planning</a>, City of Atlanta | Send questions and bug reports to <a
-        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.6.4</p>
+        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.6.5</p>
   </footer>
   <script src="app.js" async defer></script>
   <script type='module'>

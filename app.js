@@ -54,6 +54,7 @@ window.onload = function () {
   }
 };
 
+// Clear agenda items
 document.getElementById('clear').addEventListener('click', function () {
   document.getElementById('date').setAttribute('disabled', 'disabled');
   // localStorage.clear();
