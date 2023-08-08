@@ -150,6 +150,7 @@
   <div class='d-flex justify-content-around'>
     <!-- <button id='save' class='m-3 flex-grow-1'>Save</button> -->
     <button id='print' class='m-5 flex-grow-1'>Print</button>
+    <button id='docuSign' class='m-5 flex-grow-1' onclick='docuSign()'>DocuSign</button>
   </div>
   <div id='signature' style='display: none;'>
     <div class='row'>
@@ -192,13 +193,16 @@
         <li>Items are now draggable! Grab items by their type cell and drag them into any order you'd like.</li>
       </ul>
       <ul>
-        <li>Fill page header info - this information is saved to your device for future use when you click print.</li>
-        <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable, and
+        <li>Fill page header info - this information is saved to your device for future use when you click print.
+        </li>
+        <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable,
+          and
           select NPU recommendation from drop-down - do not list the outcomes of each vote, only disposition.</li>
         <li>Add comments/conditions if applicable and submit.</li>
         <li>To delete an item, click the 'X' button next to the item. Comments and application numbers are editable
           after submission.</li>
-        <li>When finished, click 'Print'. You may print the page if you have access to a printer, or print to .PDF for
+        <li>When finished, click 'Print'. You may print the page if you have access to a printer, or print to .PDF
+          for
           emailing.</li>
         <li>In iOS - Tap the print preview image to share the filled form.</li>
         <li>When saving, please do not rename the file - but pay attention to where the file is being saved.</li>
@@ -206,7 +210,8 @@
         <li>Recommendation field is not required, so you can pre-fill items and edit them later.</li>
         <li>If a recommendation isn't selected it will show as "PENDING" - Click on the
           recommendation cell to change it.</li>
-        <li>The print button is disabled if any item's NPU Recommendation field is "PENDING". Select a recommendation
+        <li>The print button is disabled if any item's NPU Recommendation field is "PENDING". Select a
+          recommendation
           to continue printing.</li>
         <li>Add a comments line to an existing item by pressing 'tab' inside the Application Name field.
         </li>
