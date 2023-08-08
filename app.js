@@ -520,14 +520,16 @@ function getDragAfterElement(container, y) {
   }, { offset: Number.NEGATIVE_INFINITY }).element
 };
 
-function docuSign() {
-  let headers = new Headers();
+// function docuSign() {
+//   var urlScopes = SCOPES.join('+');
 
-  https://account-d.docusign.com/oauth/auth?response_type=code&scope=$signature%20impersonation&client_id=3b7cec5e-e9c3-417c-80bc-348743e8db81&redirect_uri=http://127.0.0.1:5000/ds/callback
-  let SCOPE = 'signature';
-  let YOUR_INTEGRATION_KEY = '3b7cec5e-e9c3-417c-80bc-348743e8db81';
-  let YOUR_REDIRECT_URI = '127.0.0.1:5000';
-  fetch(`https://account-d.docusign.com/oauth/auth?response_type=code&scope=${SCOPE}&client_id=${YOUR_INTEGRATION_KEY}&redirect_uri=${YOUR_REDIRECT_URI}`)
-    .then(result => consol.log(result))
-    .catch(err => console.error(err))
-};
+//   // Construct consent URL
+//   var redirectUri = "https://developers.docusign.com/platform/auth/consent";
+//   var consentUrl = `${jwtConfig.dsOauthServer}/oauth/auth?response_type=code&` +
+//     `scope=${urlScopes}&client_id=${jwtConfig.dsJWTClientId}&` +
+//     `redirect_uri=${redirectUri}`;
+
+//   // open consentUrl in new window
+//   window.open(consentUrl, 'Authorization', 'width=500,height=600')
+
+// };
