@@ -48,7 +48,7 @@
   <form id='pageInfo'>
     <div class='row'>
       <div class='col'>
-        <label class='pHead' for="neighborhood">Select NPU:</label>
+        <label class='pHead' for="neighborhood">NPU:</label>
         <select class='pHead' name="neighborhood" id="NPU">
           <option value="A">A</option>
           <option value="B">B</option>
@@ -76,6 +76,7 @@
           <option value="Y">Y</option>
           <option value="Z">Z</option>
         </select>
+        <button id='clear' class='mb-1' type='reset'>Clear Items</button>
         <br>
         <label class='pHead' for="chair">Chair:</label>
         <input class='pHead' type="text" name="chair" id="chair">
@@ -111,8 +112,8 @@
         <option value='ZRB'>ZRB</option>
         <option value='SUP'>SUP</option>
         <option value='BZA'>BZA</option>
-        <option value='Text Amendment'>Text Amendment</option>
-        <option value='CDP'>CDP Amendment</option>
+        <option value='Text Am.'>Text Am.</option>
+        <option value='CDP'>CDP Am.</option>
         <option value='SD'>SD</option>
         <option value='LOR'>LOR</option>
         <option value='N/A'>Other...</option>
@@ -142,18 +143,6 @@
         <th>NPU Recommendation</th>
       </tr>
     </thead>
-    <!-- <tbody id='demo'>
-      <tr>
-        <td class='typeBttn'>ZRB</td>
-        <td contenteditable="true">Z-12-345</td>
-        <td>Approval</td>
-      </tr>
-      <tr>
-        <td colspan='3' contenteditable='true'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti
-          placeat iusto expedita provident nihil praesentium, libero quod perspiciatis recusandae? Repellat hic eius
-          culpa quam dignissimos dicta inventore sint quis accusantium. </td>
-      </tr> -->
-    </tbody>
   </table>
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -190,8 +179,18 @@
         target='_blank'>Planner's Report</a></h5>
   </div>
   <footer>
-    <details id='instructions'>
+    <details open id='instructions'>
       <summary>Instructions:</summary>
+      <ul style='list-style-type: "✨";'>
+        <h5><b>NEW!</b></h5>
+        <li>When changes are made, agenda items and Planner's Notes are saved to your device until cleared.
+          To clear them, click 'Clear Items' at the top of the page. Stored items are editable just
+          like new ones!</li>
+        <li>When 'Autofill application numbers' is selected, applications with a defined naming convention will be
+          formatted automatically (no need to enter dashes). This preference is also saved to your device.</li>
+        <li>Instead of a pop-up telling you to enter a meeting date, the datepicker will present itself.</li>
+        <li>Items are now draggable! Grab items by their type cell and drag them into any order you'd like.</li>
+      </ul>
       <ul>
         <li>Fill page header info - this information is saved to your device for future use when you click print.</li>
         <li>For each voting item: Select item type, complete the pre-filled application numbers where applicable, and
@@ -199,7 +198,6 @@
         <li>Add comments/conditions if applicable and submit.</li>
         <li>To delete an item, click the 'X' button next to the item. Comments and application numbers are editable
           after submission.</li>
-
         <li>When finished, click 'Print'. You may print the page if you have access to a printer, or print to .PDF for
           emailing.</li>
         <li>In iOS - Tap the print preview image to share the filled form.</li>
@@ -210,7 +208,7 @@
           recommendation cell to change it.</li>
         <li>The print button is disabled if any item's NPU Recommendation field is "PENDING". Select a recommendation
           to continue printing.</li>
-        <li>Add a comments line to an existing item by pressing <code>Tab</code> inside the Application Name field.
+        <li>Add a comments line to an existing item by pressing 'tab' inside the Application Name field.
         </li>
       </ul>
     </details>
@@ -218,7 +216,7 @@
     <p>Prepared by the <a href='https://www.atlantaga.gov/government/departments/city-planning'
         target='_blank'>Department of City
         Planning</a>, City of Atlanta | Send questions and bug reports to <a
-        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.5.5</p>
+        href="mailto:kdunlap@atlantaga.gov">KDunlap@AtlantaGA.gov</a> | Version 1.6.6</p>
   </footer>
   <script src="app.js" async defer></script>
   <script type='module'>

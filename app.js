@@ -10,28 +10,59 @@ function storeForm() {
   let chair = document.querySelector('#chair').value.trim() || '';
   let loc = document.querySelector('#location').value.trim() || '';
   let planner = document.querySelector('#planner').value.trim() || '';
+  let fillToggle = document.querySelector('#autofill').checked;
+  let pNotes = document.querySelector('#pNotes').value.trim() || '';
+  // save the table contents as a JSON object
+  let items = document.getElementById('table').outerHTML.replace(/( id="table">[\W\w]*(<\/thead>))(\n)/gim, '>');
+
   // save inputs to object
   let data = {
     NPU: NPU,
     chair: chair,
     loc: loc,
     planner: planner,
+    fillToggle: fillToggle,
   };
+
   // save data to local storage
   localStorage.setItem('data', JSON.stringify(data));
-  console.log(data);
+  localStorage.setItem('items', JSON.stringify(items));
+  localStorage.setItem('pNotes', pNotes);
 }
 
 // on load, check if there is data in local storage and if so, pre-fill the form
 window.onload = function () {
   if (localStorage.getItem('data')) {
+    // console.log(localStorage.getItem('data'));
     let data = JSON.parse(localStorage.getItem('data'));
     document.querySelector('#NPU').value = data.NPU;
     document.querySelector('#chair').value = data.chair;
     document.querySelector('#location').value = data.loc;
     document.querySelector('#planner').value = data.planner;
+    document.querySelector('#autofill').checked = data.fillToggle;
   };
+  if (localStorage.getItem('items')) {
+    let items = localStorage.getItem('items');
+    document.querySelector('#table').insertAdjacentHTML('beforeend', JSON.parse(items));
+    document.querySelectorAll('.btn-close').forEach(btn => {
+      btn.style.display = 'inline';
+    });
+  };
+  if (localStorage.getItem('pNotes')) {
+    let pNotes = localStorage.getItem('pNotes') || '';
+    document.querySelector('#pNotes').value = pNotes;
+  }
 };
+
+// Clear agenda items
+document.getElementById('clear').addEventListener('click', function () {
+  document.getElementById('date').setAttribute('disabled', 'disabled');
+  // localStorage.clear();
+  // Delete only the items
+  localStorage.removeItem('items');
+  localStorage.removeItem('pNotes');
+  location.reload();
+});
 
 // on itemType change, preFill the applName
 document.querySelector('#itmType').addEventListener('change', preFill);
@@ -43,44 +74,139 @@ function preFill() {
     case 'MOSE':
       applName.setAttribute('placeholder', 'Applicant Name');
       applName.value = ('');
+      applName.setAttribute('type', 'text');
+      applName.oninput = (e) => {
+        e.target.value = patternMatch({
+          input: e.target.value,
+          template: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        });
+      };
       break;
     case 'LRB':
       applName.setAttribute('placeholder', 'Applicant Name');
       applName.value = ('');
+      applName.setAttribute('type', 'text');
+      applName.oninput = (e) => {
+        e.target.value = patternMatch({
+          input: e.target.value,
+          template: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        });
+      };
       break;
     case 'ZRB':
-      if (autoFill.checked) { applName.value = ('Z-2'); }
       applName.setAttribute('placeholder', 'Z-');
+      if (autoFill.checked) {
+        applName.value = ('Z-2');
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "Z-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       break;
     case 'SUP':
-      if (autoFill.checked) { applName.value = 'U-2'; }
       applName.setAttribute('placeholder', 'U-');
+      if (autoFill.checked) {
+        applName.value = 'U-2';
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "U-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       break;
     case 'BZA':
-      if (autoFill.checked) { applName.value = 'V-2'; }
       applName.setAttribute('placeholder', 'V-');
+      if (autoFill.checked) {
+        applName.value = 'V-2';
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "V-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       break;
-    case 'Text Amendment':
-      if (autoFill.checked) { applName.value = 'Z-2'; }
+    case 'Text Am.':
       applName.setAttribute('placeholder', 'Z-');
+      if (autoFill.checked) {
+        applName.value = 'Z-2';
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "Z-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       break;
     case 'CDP':
-      if (autoFill.checked) { applName.value = 'CDP-2'; }
       applName.setAttribute('placeholder', 'CDP-');
+      if (autoFill.checked) {
+        applName.value = 'CDP-2';
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "CDP-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       break;
     case 'SD':
-      if (autoFill.checked) { applName.value = 'SD-2'; }
       applName.setAttribute('placeholder', 'SD-')
+      if (autoFill.checked) {
+        applName.value = 'SD-2';
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "SD-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       disposal.value = 'R&C'
       break;
     case 'LOR':
-      if (autoFill.checked) { applName.value = 'LOR-2'; }
       applName.setAttribute('placeholder', 'LOR-')
+      if (autoFill.checked) {
+        applName.value = 'LOR-2';
+        applName.setAttribute('type', 'tel');
+        applName.oninput = (e) => {
+          e.target.value = patternMatch({
+            input: e.target.value,
+            template: "LOR-xx-xxx",
+          });
+        };
+      } else { applName.value = ''; };
       disposal.value = 'R&C'
       break;
     case 'N/A':
-      applName.value = '';
       applName.removeAttribute('placeholder');
+      applName.value = '';
+      applName.setAttribute('type', 'text');
+      applName.oninput = (e) => {
+        e.target.value = patternMatch({
+          input: e.target.value,
+          template: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        });
+      };
+      break;
+    default:
+      applName.removeAttribute('placeholder');
+      applName.value = '';
+      applName.setAttribute('type', 'text');
+      applName.oninput = (e) => {
+        e.target.value = patternMatch({
+          input: e.target.value,
+          template: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        });
+      };
       break;
   }
 };
@@ -111,9 +237,10 @@ submit.addEventListener('click', (e) => {
   let commentsCell = document.createElement('td');
   // add text to cells
   itmTypeCell.innerText = itmType;
+  itmTypeCell.setAttribute('class', 'typeTD');
   itmTypeCell.prepend(deleteButton);
   deleteButton.setAttribute('type', 'button');
-  deleteButton.setAttribute('class', 'btn-close my-1');
+  deleteButton.setAttribute('class', 'btn-close');
   applNameCell.textContent = applName;
   applNameCell.setAttribute('contenteditable', 'true');
   applNameCell.classList.add('applName');
@@ -122,8 +249,10 @@ submit.addEventListener('click', (e) => {
   commentsCell.textContent = comments;
   commentsCell.classList.add('comments');
 
-  // wrap each new item in a <tbody>
+  // wrap each new item in a <tbody> that is draggable
   let tbody = document.createElement('tbody');
+  tbody.setAttribute('draggable', 'true');
+  tbody.setAttribute('class', 'draggable');
   tbody.append(row);
 
   // append new tbody to table
@@ -155,27 +284,18 @@ submit.addEventListener('click', (e) => {
   document.querySelector('#addItem').reset();
   document.getElementById('applName').setAttribute('placeholder', 'Application number or name');
   // removeDemo();
-}
-);
+  storeForm();
+});
 
 // on button click, remove that tbody
 document.querySelector('#table').addEventListener('click', (e) => {
   if (e.target.classList.contains('btn-close')) {
     if (confirm('Are you sure you want to delete this item?')) {
       e.target.parentElement.parentElement.parentElement.remove();
+      storeForm();
     } else { return; }
   }
-}
-);
-
-// remove #demo if it exists
-// function removeDemo() {
-//   if (document.querySelector('#demo') === null) {
-//     return;
-//   } else {
-//     document.querySelector('#demo').remove();
-//   }
-// };
+});
 
 // on disposalCell click, show select box
 document.querySelector('#table').addEventListener('click', (e) => {
@@ -187,8 +307,10 @@ document.querySelector('#table').addEventListener('click', (e) => {
   // on blur, change selected value to td text
   e.target.addEventListener('focusout', (e) => {
     if (e.target.tagName === 'SELECT') {
-      e.target.parentElement.classList.remove('highlight');
+      e.target.parentElement?.classList.remove('highlight');
+      // I don't know why this throws an error every time, but it works!
       e.target.parentElement.innerText = e.target.value;
+      storeForm();
     }
   });
 });
@@ -209,13 +331,14 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
     commentsRow.appendChild(commentsCell);
     // append row to tbody
     e.target.parentElement.parentElement.appendChild(commentsRow);
+    storeForm();
   }
 });
 
 // Warn before leaving page
-window.onbeforeunload = function (e) {
-  return 'Form contents will be lost!';
-};
+// window.onbeforeunload = function (e) {
+//   return 'Unsaved form contents may be lost!';
+// };
 
 // set datepicker to today
 // today = document.querySelector('#date').valueAsDate = new Date();
@@ -224,6 +347,17 @@ window.onbeforeunload = function (e) {
 document.querySelector('#pNotes').addEventListener('input', (e) => {
   e.target.style.height = 'auto';
   e.target.style.height = e.target.scrollHeight + 2 + 'px';
+});
+
+document.querySelector('#pNotes').addEventListener('focusout', (e) => {
+  storeForm();
+});
+
+// listen for focusout, if on .comments, storeForm()
+document.querySelector('#table').addEventListener('focusout', (e) => {
+  if (e.target.classList.contains('comments')) {
+    storeForm();
+  }
 });
 
 // get date from datepicker
@@ -255,23 +389,21 @@ window.addEventListener('beforeprint', () => {
   });
   // if comment cells are empty, remove them
   document.querySelectorAll('td[contenteditable="true"]').forEach(cell => {
-    console.log('remove empty comments')
     if (cell.textContent === '') {
       cell.parentElement.remove();
     }
   });
-  // if (document.querySelector('#demo') === !null) {
-  //   document.getElementById('demo').style.display = 'none';
-  // };
 });
 
 // on print button click, print page
 document.querySelector('#print').addEventListener('click', () => {
   let dispCell = document.querySelectorAll('.disp');
-  // if datepicker is empty, return
+  // // if datepicker is empty, return
   if (field.value === '') {
-    message.innerText = 'Please select a date';
-    dialog.showModal();
+    // message.innerText = 'Please select a date';
+    // dialog.showModal();
+    // set focus to the datepicker
+    field.showPicker();
     return;
   }
   // if any dispCell is "PENDING", cancel print and highlight cell
@@ -296,7 +428,6 @@ document.querySelector('#print').addEventListener('click', () => {
 // reset title after print
 window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
-  storeForm();
   document.getElementById('report').style.display = 'block';
   document.getElementById('instructions').style.display = 'block';
   document.getElementById('print').style.display = 'block';
@@ -308,3 +439,83 @@ window.addEventListener('afterprint', () => {
   let notes = document.getElementById('pNotes').textContent;
   document.querySelector('#pNotes').outerHTML = `<textarea id="pNotes" class="form-control" placeholder="Enter any notes here...">${notes}</textarea>`;
 });
+
+// auto-format application numbers
+function patternMatch({
+  input,
+  template
+}) {
+  try {
+    if (autoFill.checked) {
+
+      let j = 0;
+      let plaintext = "";
+      let countj = 0;
+      while (j < template.length) {
+
+        if (countj > input.length - 1) {
+          template = template.substring(0, j);
+          break;
+        }
+
+        if (template[j] == input[j]) {
+          j++;
+          countj++;
+          continue;
+        }
+
+        if (template[j] == "x") {
+          template = template.substring(0, j) + input[countj] + template.substring(j + 1);
+          plaintext = plaintext + input[countj];
+          countj++;
+        }
+        j++;
+      }
+
+      return template
+    }
+    else {
+      return input;
+    }
+  } catch {
+    return ""
+  }
+};
+
+// make tbody rows draggable
+const draggables = document.querySelectorAll('.draggable');
+const container = document.getElementById('table');
+
+container.addEventListener('dragstart', (e) => {
+  e.target.classList.add('dragging');
+});
+
+container.addEventListener('dragend', (e) => {
+  e.target.classList.remove('dragging');
+});
+
+container.addEventListener('dragover', e => {
+  e.preventDefault();
+  const afterElement = getDragAfterElement(container, e.clientY);
+  // console.log(afterElement)
+  const draggable = document.querySelector('.dragging')
+  if (afterElement == null) {
+    container.appendChild(draggable);
+  } else {
+    container.insertBefore(draggable, afterElement);
+  }
+})
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')]
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect()
+    const offset = y - box.top - box.height / 2
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child }
+    } else {
+      return closest
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element
+};
