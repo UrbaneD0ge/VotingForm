@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -43,7 +43,7 @@
   <dialog class='text-center' id='dialog' style='border-radius: 10px;'>
     <span id='message'></span>
     <br>
-    <button class='btn btn-outline' onclick=dialog.close()>OK</button>
+    <button area-label='OK' class='btn btn-outline' onclick=dialog.close()>OK</button>
   </dialog>
   <form id='pageInfo'>
     <div class='row'>
@@ -76,7 +76,7 @@
           <option value="Y">Y</option>
           <option value="Z">Z</option>
         </select>
-        <button id='clear' class='mb-1' type='reset'>Clear Items</button>
+        <button aria-label='clear saved agenda items' id='clear' class='mb-1' type='reset'>Clear Items</button>
         <br>
         <label class='pHead' for="chair">Chair:</label>
         <input class='pHead' type="text" name="chair" id="chair">
@@ -149,7 +149,7 @@
     <![endif]-->
   <div class='d-flex justify-content-around'>
     <!-- <button id='save' class='m-3 flex-grow-1'>Save</button> -->
-    <button id='print' class='m-5 flex-grow-1'>Print</button>
+    <button name='print' id='print' class='m-5 flex-grow-1'>Print</button>
   </div>
   <div id='signature' style='display: none;'>
     <div class='row'>

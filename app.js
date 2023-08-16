@@ -241,6 +241,7 @@ submit.addEventListener('click', (e) => {
   itmTypeCell.prepend(deleteButton);
   deleteButton.setAttribute('type', 'button');
   deleteButton.setAttribute('class', 'btn-close');
+  deleteButton.setAttribute('aria-label', 'delete item');
   applNameCell.textContent = applName;
   applNameCell.setAttribute('contenteditable', 'true');
   applNameCell.classList.add('applName');
