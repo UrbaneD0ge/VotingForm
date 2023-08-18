@@ -398,6 +398,7 @@ window.addEventListener('beforeprint', () => {
 
 // on print button click, print page
 document.querySelector('#print').addEventListener('click', () => {
+  storeForm();
   let dispCell = document.querySelectorAll('.disp');
   // // if datepicker is empty, return
   if (field.value === '') {
