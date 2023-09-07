@@ -251,6 +251,19 @@ and (max-width : 425px) {
   #clear {
     display: none !important;
   }
+  input, select {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  #pageInfo input {
+    background-color: transparent;
+  }
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
 }
 
 /* Autofill toggle switch */
