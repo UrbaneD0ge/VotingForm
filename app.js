@@ -521,15 +521,68 @@ function getDragAfterElement(container, y) {
 };
 
 // function docuSign() {
+//   var SCOPES = ["signature", "impersonation"];
 //   var urlScopes = SCOPES.join('+');
+//   var jwtConfig = {
+//     dsJWTClientId: "3b7cec5e-e9c3-417c-80bc-348743e8db81",
+//     dsJWTClientSecret: "8d1d6cf1-b766-44f5-99bd-7b88e94de7a4",
+//     dsJWTRedirectURI: "http://localhost:5500",
+//     dsOauthServer: "https://account-d.docusign.com",
+//   };
 
 //   // Construct consent URL
-//   var redirectUri = "https://developers.docusign.com/platform/auth/consent";
+//   var redirectUri = "http://localhost:5500/ds/callback";
 //   var consentUrl = `${jwtConfig.dsOauthServer}/oauth/auth?response_type=code&` +
 //     `scope=${urlScopes}&client_id=${jwtConfig.dsJWTClientId}&` +
 //     `redirect_uri=${redirectUri}`;
+//   console.log(consentUrl)
 
 //   // open consentUrl in new window
 //   window.open(consentUrl, 'Authorization', 'width=500,height=600')
+
+//   // listen for message from consent window
+//   window.addEventListener('message', (e) => {
+//     // if message is from consent window
+//     if (e.origin === 'https://demo.docusign.com') {
+//       // if message is an error
+//       if (e.data.error) {
+//         console.log(e.data.error);
+//         return;
+//       }
+//       // if message is a code
+//       if (e.data.code) {
+//         // close consent window
+//         window.close();
+//         // get access token
+//         getAccessToken(e.data.code);
+//       }
+//     }
+//   });
+
+//   // get access token
+//   function getAccessToken(code) {
+
+//     // construct request body
+//     var requestBody = `grant_type=authorization_code&code=${code}`;
+
+//     // make request
+//     fetch(`${jwtConfig.dsOauthServer}/oauth/token`, {
+//       method: 'POST',
+//       headers: {
+//         'Authorization': `Basic ${btoa(`${jwtConfig.dsJWTClientId}:${jwtConfig.dsJWTClientSecret}`)}`,
+//         'Content-Type': 'application/x-www-form-urlencoded'
+//       },
+//       body: requestBody
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         // console.log(data);
+//         // save access token to local storage
+//         localStorage.setItem('accessToken', data.access_token);
+//         // get user info
+//         getUserInfo();
+//       })
+//       .catch(err => console.log(err));
+//   };
 
 // };
