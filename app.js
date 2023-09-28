@@ -318,7 +318,7 @@ document.querySelector('#table').addEventListener('click', (e) => {
 
 // listen for tab key press in applName cells, add new row for comments
 document.querySelector('#table').addEventListener('keydown', (e) => {
-  if (e.target.classList.contains('applName') === true && e.key === 'Tab' && e.target.parentElement.nextElementSibling == null) {
+  if (e.target.classList.contains('applName') === true && e.key === 'Tab' && e.target.parentElement.nextElementSibling.classList.contains('motionRow') || null) {
     // create new row for comments
     let commentsRow = document.createElement('tr');
     // create new cell for comments
@@ -336,13 +336,35 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
   }
 });
 
-// Warn before leaving page
-// window.onbeforeunload = function (e) {
-//   return 'Unsaved form contents may be lost!';
-// };
+// listen for enter key press in applName cells, add new row for motions
+document.querySelector('#table').addEventListener('keydown', (e) => {
+  if (e.target.classList.contains('applName') === true && e.key === 'Enter') {
+    // create new row for motion
+    let motionRow = document.createElement('tr');
+    motionRow.classList.add('motionRow');
+    // create new cell for motion
+    let motionCell = document.createElement('td');
+    let YeaCell = document.createElement('td');
+    let NayCell = document.createElement('td');
+    let AbsCell = document.createElement('td');
 
-// set datepicker to today
-// today = document.querySelector('#date').valueAsDate = new Date();
+    // motionCell.setAttribute('contenteditable', 'true');
+    // motionCell.classList.add('motion');
+    // add text to cell
+    motionCell.textContent = 'Motion: ';
+    YeaCell.textContent = 'Yea: ';
+    NayCell.textContent = 'Nay: ';
+    AbsCell.textContent = 'Abstain: ';
+    // append cell to row
+    motionRow.appendChild(motionCell);
+    motionRow.appendChild(YeaCell);
+    motionRow.appendChild(NayCell);
+    motionRow.appendChild(AbsCell);
+    // append row to tbody
+    e.target.parentElement.parentElement.appendChild(motionRow);
+    storeForm();
+  }
+});
 
 // expand pNotes textarea on to fit text
 document.querySelector('#pNotes').addEventListener('input', (e) => {

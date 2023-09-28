@@ -40,6 +40,14 @@ select, input, button, textarea {
   background-color: lightgray;
 }
 
+/* .motionRow {
+  grid-template-columns: .25fr .25fr .25fr .25fr;
+} */
+
+.motionRow td {
+  text-align: left !important;
+}
+
 .noBreak {
   break-inside: avoid;
 }
