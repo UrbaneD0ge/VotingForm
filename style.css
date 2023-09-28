@@ -228,6 +228,10 @@ and (max-width : 425px) {
   }
 }
 
+@page {
+  margin: 0mm !important;
+}
+
 @media print {
   #newItem {
     visibility: hidden;
@@ -238,10 +242,11 @@ and (max-width : 425px) {
   print-color-adjust: exact !important;
   }
   body {
-    margin: 0.4 !important;
+    margin: 0.2 !important;
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);
   }
+
   #fillToggle {
     display: none;
   }
