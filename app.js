@@ -244,6 +244,7 @@ submit.addEventListener('click', (e) => {
   deleteButton.setAttribute('aria-label', 'delete item');
   applNameCell.textContent = applName;
   applNameCell.setAttribute('contenteditable', 'true');
+  applNameCell.setAttribute('colspan', '2');
   applNameCell.classList.add('applName');
   disposalCell.textContent = disposal;
   disposalCell.classList.add('disp');
@@ -263,13 +264,17 @@ submit.addEventListener('click', (e) => {
   row.appendChild(itmTypeCell);
   row.appendChild(applNameCell);
   row.appendChild(disposalCell);
+  row.innerHTML += `<svg class="commentIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+</svg>`
+
 
   if (comments !== '') {
     // create new row for comments
     let commentsRow = document.createElement('tr');
     // create new cell for comments
     // let commentsCell = document.createElement('td')
-    commentsCell.setAttribute('colspan', '3');
+    commentsCell.setAttribute('colspan', '4');
     commentsCell.setAttribute('contenteditable', 'true');
     commentsCell.classList.add('comments');
     // add text to cell
@@ -323,7 +328,7 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
     let commentsRow = document.createElement('tr');
     // create new cell for comments
     let commentsCell = document.createElement('td')
-    commentsCell.setAttribute('colspan', '3');
+    commentsCell.setAttribute('colspan', '4');
     commentsCell.setAttribute('contenteditable', 'true');
     commentsCell.classList.add('comments');
     // add text to cell
@@ -347,6 +352,10 @@ document.querySelector('#table').addEventListener('keydown', (e) => {
     let YeaCell = document.createElement('td');
     let NayCell = document.createElement('td');
     let AbsCell = document.createElement('td');
+    motionCell.setAttribute('contenteditable', 'true');
+    YeaCell.setAttribute('contenteditable', 'true');
+    NayCell.setAttribute('contenteditable', 'true');
+    AbsCell.setAttribute('contenteditable', 'true');
 
     // motionCell.setAttribute('contenteditable', 'true');
     // motionCell.classList.add('motion');

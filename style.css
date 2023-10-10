@@ -27,6 +27,12 @@ select, input, button, textarea {
   border-radius: 5px;
 }
 
+.commentIcon {
+  position: absolute;
+  right: -17px;
+  top: 2px;
+}
+
 .dragging {
   opacity: 30%;
 }
