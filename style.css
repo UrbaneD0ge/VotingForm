@@ -28,9 +28,9 @@ select, input, button, textarea {
 }
 
 .commentIcon {
-  position: absolute;
-  right: -17px;
-  top: 2px;
+  color: #888;
+  margin-left: 5px;
+  position: relative;
 }
 
 .dragging {
@@ -117,7 +117,7 @@ td > button {
   left: 2px;
 }
 
-tbody > tr :nth-child(2) {
+tbody > tr :nth-of-type(td) {
   width: 40%;
 }
 

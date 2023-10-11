@@ -264,9 +264,9 @@ submit.addEventListener('click', (e) => {
   row.appendChild(itmTypeCell);
   row.appendChild(applNameCell);
   row.appendChild(disposalCell);
-  row.innerHTML += `<svg class="commentIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+  itmTypeCell.innerHTML += `<button class="commentIcon" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
   <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
-</svg>`
+</svg></button>`
 
 
   if (comments !== '') {
@@ -322,23 +322,21 @@ document.querySelector('#table').addEventListener('click', (e) => {
 });
 
 // listen for tab key press in applName cells, add new row for comments
-document.querySelector('#table').addEventListener('keydown', (e) => {
-  if (e.target.classList.contains('applName') === true && e.key === 'Tab' && e.target.parentElement.nextElementSibling.classList.contains('motionRow') || null) {
-    // create new row for comments
-    let commentsRow = document.createElement('tr');
-    // create new cell for comments
-    let commentsCell = document.createElement('td')
-    commentsCell.setAttribute('colspan', '4');
-    commentsCell.setAttribute('contenteditable', 'true');
-    commentsCell.classList.add('comments');
-    // add text to cell
-    commentsCell.textContent = '';
-    // append cell to row
-    commentsRow.appendChild(commentsCell);
-    // append row to tbody
-    e.target.parentElement.parentElement.appendChild(commentsRow);
-    storeForm();
-  }
+document.querySelector('.commentIcon').addEventListener('click', (e) => {
+  // create new row for comments
+  let commentsRow = document.createElement('tr');
+  // create new cell for comments
+  let commentsCell = document.createElement('td')
+  commentsCell.setAttribute('colspan', '4');
+  commentsCell.setAttribute('contenteditable', 'true');
+  commentsCell.classList.add('comments');
+  // add text to cell
+  commentsCell.textContent = '';
+  // append cell to row
+  commentsRow.appendChild(commentsCell);
+  // append row to tbody
+  e.target.parentElement.parentElement.appendChild(commentsRow);
+  storeForm();
 });
 
 // listen for enter key press in applName cells, add new row for motions
