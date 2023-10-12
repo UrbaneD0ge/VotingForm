@@ -29,8 +29,8 @@ select, input, button, textarea {
 
 .commentIcon {
   color: #888;
-  margin-left: 5px;
-  position: relative;
+  margin: 5px;
+  /* position: relative; */
 }
 
 .dragging {
