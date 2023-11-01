@@ -157,6 +157,10 @@ ol {
   grid-area: 2 / 1 / 3 / 4;
 }
 
+#copyLink {
+  cursor: pointer;
+}
+
 #dcpLogo {
   display: block;
   margin-left: auto;
@@ -165,6 +169,12 @@ ol {
   margin-bottom: 3%;
   margin-top: 3%;
   min-width: 1.5in !important;
+}
+
+#links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 #newItem {
@@ -233,10 +243,10 @@ and (max-width : 425px) {
 }
 
 @media print {
-  #newItem {
+  /* #newItem {
     visibility: hidden;
     display: none;
-  }
+  } */
   #signature {
   -webkit-print-color-adjust: exact !important;
   print-color-adjust: exact !important;
@@ -247,15 +257,17 @@ and (max-width : 425px) {
     -webkit-filter: grayscale(100%);
   }
 
-  #fillToggle {
-    display: none;
+  #clear, #fillToggle, #links, #instructions, #newItem, #print {
+    display: none !important;
+    visibility: hidden !important;
   }
+
   .typeTD {
     padding-left: 10px !important;
   }
-  #clear {
+  /* #clear {
     display: none !important;
-  }
+  } */
   input, select {
     border: none;
     outline: none;

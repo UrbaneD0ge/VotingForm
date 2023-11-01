@@ -28,6 +28,8 @@ function storeForm() {
   localStorage.setItem('data', JSON.stringify(data));
   localStorage.setItem('items', JSON.stringify(items));
   localStorage.setItem('pNotes', pNotes);
+
+  console.log('form saved');
 }
 
 // on load, check if there is data in local storage and if so, pre-fill the form
@@ -68,6 +70,11 @@ document.getElementById('clear').addEventListener('click', function () {
 document.querySelector('#itmType').addEventListener('change', preFill);
 
 const autoFill = document.querySelector('#autofill');
+
+// on autofill toggle, save the form
+autoFill.addEventListener('change', () => {
+  storeForm();
+});
 
 function preFill() {
   switch (document.querySelector('#itmType').value) {
@@ -381,9 +388,9 @@ window.addEventListener('beforeprint', () => {
   // change pNotes textarea to <h5> element
   document.querySelector('#pNotes').outerHTML = `<h5 id="pNotes">${notes}</h5>`;
   // Hide instructions, print btn, and delete item buttons for printing
-  document.getElementById('instructions').style.display = 'none';
+  // document.getElementById('instructions').style.display = 'none';
   document.getElementById('print').style.display = 'none';
-  document.getElementById('report').style.display = 'none';
+  // document.getElementById('links').style.display = 'none';
   document.getElementById('signature').style.display = 'block';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'none';
@@ -412,16 +419,27 @@ document.querySelector('#print').addEventListener('click', () => {
   dispCell.forEach(cell => {
     if (cell.textContent === 'PENDING') {
       cell.classList.add('highlight');
-      return;
+      // return;
     } else {
       cell.classList.remove('highlight');
     }
   });
   // check if any disp cell contains "PENDING", if so, cancel printing
+  // if (document.querySelectorAll('.highlight').length > 0) {
+  //   message.innerText = 'Please select a disposition for all items';
+  //   dialog.showModal();
+  //   // return;
+  // }
+  // else {
+  //   window.print();
+  // }
+
   if (document.querySelectorAll('.highlight').length > 0) {
-    message.innerText = 'Please select a disposition for all items';
-    dialog.showModal();
-    return;
+    if (window.confirm('Some items do not have Recommendations! Are you sure you want to print?')) {
+      window.print();
+    } else {
+      return;
+    }
   } else {
     window.print();
   }
@@ -430,10 +448,9 @@ document.querySelector('#print').addEventListener('click', () => {
 // reset title after print
 window.addEventListener('afterprint', () => {
   document.title = 'Planner’s Voting Report';
-  document.getElementById('report').style.display = 'block';
+  document.getElementById('links').style.display = 'flex';
   document.getElementById('instructions').style.display = 'block';
   document.getElementById('print').style.display = 'block';
-  document.getElementById('report').style.display = 'block';
   document.querySelectorAll('.btn-close').forEach(btn => {
     btn.style.display = 'inline';
   });
@@ -521,3 +538,20 @@ function getDragAfterElement(container, y) {
     }
   }, { offset: Number.NEGATIVE_INFINITY }).element
 };
+
+function copyLink() {
+  let updates = document.getElementById('copyLink');
+  navigator.clipboard.writeText('https://www.atlantaga.gov/government/departments/city-planning/neighborhood-planning-units/updates');
+  console.log('link copied');
+  updates.innerText = 'Copied!';
+  updates.style.backgroundColor = 'black';
+  updates.style.color = 'white';
+  updates.style.borderColor = 'white';
+
+  setTimeout(() => {
+    updates.innerText = 'Copy Link';
+    updates.style.backgroundColor = 'buttonface';
+    updates.style.color = 'black';
+    updates.style.borderColor = 'black';
+  }, 1000);
+}
