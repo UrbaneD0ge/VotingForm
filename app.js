@@ -53,7 +53,9 @@ window.onload = function () {
   if (localStorage.getItem('pNotes')) {
     let pNotes = localStorage.getItem('pNotes') || '';
     document.querySelector('#pNotes').value = pNotes;
-  }
+  };
+  // append NPU to #scriptLink on load
+  document.getElementById('scriptLink').setAttribute('href', `https://voting-report-svelte.vercel.app/plannersScript${document.getElementById('NPU').value}`);
 };
 
 // Clear agenda items
@@ -361,10 +363,18 @@ document.querySelector('#pNotes').addEventListener('focusout', (e) => {
   storeForm();
 });
 
+document.querySelector('#NPU').addEventListener('focusout', (e) => {
+  storeForm();
+});
+
 // listen for focusout, if on .comments, storeForm()
 document.querySelector('#table').addEventListener('focusout', (e) => {
   if (e.target.classList.contains('comments')) {
     storeForm();
+  }
+  // if comments cell is empty, remove it
+  if (e.target.classList.contains('comments') && e.target.textContent === '') {
+    e.target.parentElement.remove();
   }
 });
 
@@ -555,3 +565,10 @@ function copyLink() {
     updates.style.borderColor = 'black';
   }, 1000);
 }
+
+// append NPU to #scriptLink on NPU change
+document.getElementById('NPU').addEventListener('change', function () {
+  let NPUselect = document.getElementById('NPU').value;
+  console.log(NPUselect);
+  document.getElementById('scriptLink').setAttribute('href', `https://voting-report-svelte.vercel.app/plannersScript${NPUselect}`);
+});
